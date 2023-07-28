@@ -1,0 +1,16 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - name: Run fmt
+        run: deno fmt --check --ignore=README.md
+      - name: Run lint
+        run: deno lint

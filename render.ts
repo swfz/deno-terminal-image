@@ -23,9 +23,14 @@ interface FixedPosition {
 
 const triangleBase = 40;
 const statusLineBase = 80;
+const textLineBase = 100;
+
+const measuredCorrectly = (ctx: CanvasRenderingContext2D) => {
+  return ctx.measureText("あ").width !== ctx.measureText("a").width;
+};
 
 const selectASCII = (str: string) => {
-  const matches = str.match(/[\x00-\x7F]/g);
+  const matches = str.match(/[\x20-\x7F]/g);
 
   return matches ?? [];
 };
@@ -36,7 +41,7 @@ const measureTextWithASCII = (ctx: CanvasRenderingContext2D, str: string) => {
   const ascii = selectASCII(str);
   const asciiWidth = ctx.measureText(ascii.join("")).width;
 
-  return fullWidth - (asciiWidth * 0.4);
+  return measuredCorrectly(ctx) ? fullWidth : fullWidth - (asciiWidth * 0.4);
 };
 
 const breakLines = (
@@ -112,9 +117,15 @@ const renderStatusLineItem = (
 const renderBottomStatusLine = (
   ctx: CanvasRenderingContext2D,
   texts: string[],
+  titleLines: string[],
   colors: string[],
   color: string,
 ) => {
+  // タイトル表示を優先させるため、タイトルが3行までの場合はTagも表示させる
+  if (texts.length === 0 || titleLines.length > 3) {
+    return;
+  }
+
   ctx.fillStyle = "#333";
   ctx.fillRect(0, 540, 1200, 80);
   ctx.fillStyle = "#999";
@@ -189,12 +200,50 @@ const renderTopStatusLine = (
   });
 };
 
+const renderBackground = (ctx: CanvasRenderingContext2D, color: string, width: number, height: number) => {
+  ctx.fillStyle = color;
+  ctx.fillRect(0, 0, width, height);
+};
+
+const renderCommand = (ctx: CanvasRenderingContext2D, x: number, y: number, color: string) => {
+  ctx.fillStyle = color;
+  ctx.fillText("article --title \\", x, y);
+};
+
+const renderTitle = (ctx: CanvasRenderingContext2D, titleLines: string[], x: number, y: number, color: string) => {
+  ctx.fillStyle = color;
+  titleLines.forEach((line, i) => {
+    ctx.fillText(line, x, y + i * textLineBase);
+  });
+};
+
+const renderCursor = (
+  ctx: CanvasRenderingContext2D,
+  titleLines: string[],
+  width: number,
+  height: number,
+  color: string,
+) => {
+  const lastLineWidth = measureTextWithASCII(ctx, titleLines.at(-1));
+  const cursorX = 50 + lastLineWidth + 10;
+  const cursorY = (textLineBase * 2) + 30 +
+    (titleLines.length - 1) * textLineBase;
+
+  ctx.fillStyle = color;
+  ctx.fillRect(cursorX, cursorY, width, height);
+};
+
 export {
   breakLines,
   measureTextWithASCII,
+  renderBackground,
   renderBottomStatusLine,
+  renderCommand,
+  renderCursor,
   renderPrompt,
   renderStatusLineItem,
+  renderTitle,
   renderTopStatusLine,
   renderTriangle,
+  textLineBase,
 };

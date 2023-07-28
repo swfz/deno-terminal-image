@@ -30,7 +30,7 @@ const measuredCorrectly = (ctx: CanvasRenderingContext2D) => {
 };
 
 const selectASCII = (str: string) => {
-  const matches = str.match(/[\x00-\x7F]/g);
+  const matches = str.match(/[\x20-\x7F]/g);
 
   return matches ?? [];
 };
@@ -213,7 +213,7 @@ const renderCommand = (ctx: CanvasRenderingContext2D, x: number, y: number, colo
 const renderTitle = (ctx: CanvasRenderingContext2D, titleLines: string[], x: number, y: number, color: string) => {
   ctx.fillStyle = color;
   titleLines.forEach((line, i) => {
-    ctx.fillText(line, 50, 300 + i * textLineBase);
+    ctx.fillText(line, x, y + i * textLineBase);
   });
 };
 

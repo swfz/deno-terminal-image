@@ -31,6 +31,10 @@
         document.getElementById('cursor_color').value = defaultTheme.cursorColor;
       }
 
+      function rmSharp(color) {
+        return color.replace('#', '');
+      }
+
       function render() {
         const canvas = document.querySelector('#generator');
         const ctx = canvas.getContext('2d');
@@ -66,6 +70,12 @@
         renderTitle(ctx, titleLines, 50, 300, titleColor);
         renderCursor(ctx, titleLines, 50, 100, cursorColor);
         renderBottomStatusLine(ctx, tags, titleLines, bottomColors, bottomColor);
+
+        const topColorsParam = topColors.map((color) => rmSharp(color)).join(',');
+        const bottomColorsParam = bottomColors.map((color) => rmSharp(color)).join(',');
+
+        const url = `https://terminal-image.deno.dev/?title=${title}&texts=${texts.join(',')}&tags=${tags.join(',')}&top_color=${rmSharp(topColor)}&top_colors=${topColorsParam}&bottom_color=${rmSharp(bottomColor)}&bottom_colors=${bottomColorsParam}&title_color=${rmSharp(titleColor)}&command_color=${rmSharp(commandColor)}&prompt_color=${rmSharp(promptColor)}&cursor_color=${rmSharp(cursorColor)}&bg_color=${rmSharp(bgColor)}`;
+        document.getElementById('url').value = url;
       }
 
     </script>
@@ -309,7 +319,9 @@
           </span>
         </div>
       </div>
-
+    </div>
+    <div class="m-5">
+      <input class="border w-full" type="text" id="url" placeholder="terminal image url" readonly/>
     </div>
     <div class="m-5">
       <canvas id="generator" width="1200" height="630" class="center">

@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script src="/static/app.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      window.onload = (ev) => {
+        // hoge();
+      }
+
+      function render() {
+        const canvas = document.querySelector('#generator');
+        const ctx = canvas.getContext('2d');
+        const titleColor = document.querySelector('#title_color').value;
+        renderPrompt(ctx, 10, 10, titleColor);
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      Generator
+    </div>
+      <!-- <input id="hoge" onChange="render()" class="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none" type="color"/> -->
+      <div className="flex flex-col">
+        <div className="flex flex-row">
+          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="title_color">
+            Title Color:
+          </label>
+          <span className="basis-3/4">
+            <input
+              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="title_color"
+              id="title_color"
+            />
+          </span>
+        </div>
+    <div>
+      <canvas id="generator" width="1200" height="630">
+      </canvas>
+    </div>
+  </body>
+</html>

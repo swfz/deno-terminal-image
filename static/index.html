@@ -55,18 +55,18 @@
     </script>
   </head>
   <body>
-    <div>
+    <h1 class="m-5 text-gray-800 text-3xl">
       Terminal Image URL Generator
-    </div>
-    <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="title">
+    </h1>
+    <div class="border m-5">
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="title">
             Title:
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="text"
               placeholder="title"
@@ -74,15 +74,15 @@
             />
           </span>
         </div>
-      <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="texts">
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="texts">
             Terminal Texts:
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="text"
               placeholder="texts"
@@ -90,15 +90,15 @@
             />
           </span>
         </div>
-      <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="tags">
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="tags">
             Terminal Texts(Tags):
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="tags"
               placeholder="tags"
@@ -106,15 +106,15 @@
             />
           </span>
         </div>
-      <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="bg_color">
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bg_color">
             Background Color:
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
               placeholder="bg_color"
@@ -122,15 +122,15 @@
             />
           </span>
         </div>
-      <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="title_color">
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="title_color">
             Title Color:
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
               placeholder="title_color"
@@ -138,15 +138,15 @@
             />
           </span>
         </div>
-      <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="command_color">
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="command_color">
             Command Color:
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
               placeholder="command_color"
@@ -154,15 +154,15 @@
             />
           </span>
         </div>
-      <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="top_color">
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_color">
             Top StatusLine Text Color:
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
               placeholder="top_color"
@@ -170,15 +170,15 @@
             />
           </span>
         </div>
-      <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="bottom_color">
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_color">
             Bottom StatusLine Text Color:
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
               placeholder="bottom_color"
@@ -186,15 +186,15 @@
             />
           </span>
         </div>
-      <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="prompt_color">
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="prompt_color">
             Prompt Color:
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
               placeholder="prompt_color"
@@ -202,15 +202,15 @@
             />
           </span>
         </div>
-      <div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <label className="ml-2 basis-1/4 font-bold text-gray-700" htmlFor="cursor_color">
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="cursor_color">
             Cursor Color:
           </label>
-          <span className="basis-3/4">
+          <span class="basis-2/6">
             <input
-              className="block h-6 w-32 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
               placeholder="cursor_color"
@@ -218,9 +218,9 @@
             />
           </span>
         </div>
-      <div>
+      </div>
     </div>
-    <div>
+    <div class="m-5">
       <canvas id="generator" width="1200" height="630" class="center">
       </canvas>
     </div>

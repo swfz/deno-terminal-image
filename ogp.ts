@@ -62,17 +62,15 @@ const handler = async (request: Request): Promise<Response> => {
   const textsParam = url.searchParams.get("texts");
   const texts = textsParam ? textsParam.split(",") : ["swfz", "til"];
 
-  const topColors = colorsParamGetter(url, "top_colors") ??
-    ["#6797e8", "#a4e083", "#efb24a", "#ec7563"];
-  const bottomColors = colorsParamGetter(url, "bottom_colors") ??
-    ["#6797e8", "#a4e083", "#efb24a", "#ec7563"];
-  const topColor = colorParamGetter(url, "top_color") ?? "#555";
-  const bottomColor = colorParamGetter(url, "bottom_color") ?? "#555";
-  const cursorColor = colorParamGetter(url, "cursor_color") ?? "#ec80f7";
-  const promptColor = colorParamGetter(url, "prompt_color") ?? "#efb24a";
-  const bgColor = colorParamGetter(url, "bg_color") ?? "#313d4f";
-  const titleColor = colorParamGetter(url, "title_color") ?? "#FFFFFF";
-  const commandColor = colorParamGetter(url, "command_color") ?? "#888";
+  const topColors = colorsParamGetter(url, "top_colors") ?? defaultTheme.topColors;
+  const bottomColors = colorsParamGetter(url, "bottom_colors") ?? defaultTheme.bottomColors;
+  const topColor = colorParamGetter(url, "top_color") ?? defaultTheme.topColor;
+  const bottomColor = colorParamGetter(url, "bottom_color") ?? defaultTheme.bottomColor;
+  const cursorColor = colorParamGetter(url, "cursor_color") ?? defaultTheme.cursorColor;
+  const promptColor = colorParamGetter(url, "prompt_color") ?? defaultTheme.promptColor;
+  const bgColor = colorParamGetter(url, "bg_color") ?? defaultTheme.bgColor;
+  const titleColor = colorParamGetter(url, "title_color") ?? defaultTheme.titleColor;
+  const commandColor = colorParamGetter(url, "command_color") ?? defaultTheme.commandColor;
 
   console.log("title:", title);
 

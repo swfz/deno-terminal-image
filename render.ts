@@ -81,7 +81,12 @@ const renderTriangle = (
   ctx.fill();
 };
 
-const renderPrompt = (ctx: CanvasRenderingContext2D, x: number, y: number, color: string) => {
+const renderPrompt = (
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  color: string,
+) => {
   ctx.fillStyle = color;
   ctx.fillText("$", x, y);
 };
@@ -89,7 +94,7 @@ const renderPrompt = (ctx: CanvasRenderingContext2D, x: number, y: number, color
 const renderStatusLineItem = (
   ctx: CanvasRenderingContext2D,
   item: StatusLineItem,
-  fixed: FixedPosition
+  fixed: FixedPosition,
 ) => {
   renderTriangle(
     ctx,
@@ -132,7 +137,7 @@ const renderBottomStatusLine = (
   texts.reverse().forEach((tag, i) => {
     const item = {
       text: tag,
-      color: colors[i] || '#000',
+      color: colors[i] || "#000",
       position: {
         rect: tagsStartPositions[i],
         triangle: tagsStartPositions[i],
@@ -150,7 +155,7 @@ const renderTopStatusLine = (
   ctx: CanvasRenderingContext2D,
   texts: string[],
   colors: string[],
-  color: string
+  color: string,
 ) => {
   const startPositions = texts.reduce((acc, text) => {
     const textWidth = measureTextWithASCII(ctx, text);
@@ -169,7 +174,7 @@ const renderTopStatusLine = (
   texts.map((text, i) => {
     const item = {
       text: text,
-      color: colors[i] || '#000',
+      color: colors[i] || "#000",
       position: {
         rect: startPositions[i],
         triangle: startPositions[i + 1] + (triangleBase * i),
@@ -185,11 +190,11 @@ const renderTopStatusLine = (
 };
 
 export {
-  renderTriangle,
-  renderPrompt,
-  renderBottomStatusLine,
-  renderTopStatusLine,
-  renderStatusLineItem,
+  breakLines,
   measureTextWithASCII,
-  breakLines
-}
+  renderBottomStatusLine,
+  renderPrompt,
+  renderStatusLineItem,
+  renderTopStatusLine,
+  renderTriangle,
+};

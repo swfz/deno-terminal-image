@@ -1,19 +1,28 @@
 import { createCanvas } from "https://deno.land/x/canvas/mod.ts";
-import { renderBottomStatusLine, renderTopStatusLine, renderPrompt, measureTextWithASCII, breakLines } from "./render.ts";
-import { serveFile, serveDir } from "https://deno.land/std@0.141.0/http/file_server.ts";
+import {
+  breakLines,
+  measureTextWithASCII,
+  renderBottomStatusLine,
+  renderPrompt,
+  renderTopStatusLine,
+} from "./render.ts";
+import {
+  serveDir,
+  serveFile,
+} from "https://deno.land/std@0.141.0/http/file_server.ts";
 
 const port = 8080;
 const textLineBase = 100;
 
 const isValidColorCode = (str: string) => {
   return /^([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(str);
-}
+};
 
 const colorParamGetter = (url: URL, key: string) => {
-  const param = url.searchParams.get(key) ?? '';
+  const param = url.searchParams.get(key) ?? "";
 
   return isValidColorCode(param) ? `#${param}` : null;
-}
+};
 
 const colorsParamGetter = (url: URL, key: string) => {
   const param = url.searchParams.get(key) ?? null;
@@ -22,8 +31,10 @@ const colorsParamGetter = (url: URL, key: string) => {
     return null;
   }
 
-  return param.split(',').filter(p => isValidColorCode(p)).map(p => `#${p}`);
-}
+  return param.split(",").filter((p) => isValidColorCode(p)).map((p) =>
+    `#${p}`
+  );
+};
 
 const handler = async (request: Request): Promise<Response> => {
   const url = new URL(request.url);
@@ -43,8 +54,10 @@ const handler = async (request: Request): Promise<Response> => {
   const textsParam = url.searchParams.get("texts");
   const texts = textsParam ? textsParam.split(",") : ["swfz", "til"];
 
-  const topColors = colorsParamGetter(url, "top_colors") ?? ["#6797e8", "#a4e083", "#efb24a", "#ec7563"];
-  const bottomColors = colorsParamGetter(url, "bottom_colors") ?? ["#6797e8", "#a4e083", "#efb24a", "#ec7563"];
+  const topColors = colorsParamGetter(url, "top_colors") ??
+    ["#6797e8", "#a4e083", "#efb24a", "#ec7563"];
+  const bottomColors = colorsParamGetter(url, "bottom_colors") ??
+    ["#6797e8", "#a4e083", "#efb24a", "#ec7563"];
   const topColor = colorParamGetter(url, "top_color") ?? "#555";
   const bottomColor = colorParamGetter(url, "bottom_color") ?? "#555";
   const cursorColor = colorParamGetter(url, "cursor_color") ?? "#ec80f7";
@@ -52,11 +65,6 @@ const handler = async (request: Request): Promise<Response> => {
   const bgColor = colorParamGetter(url, "bg_color") ?? "#313d4f";
   const titleColor = colorParamGetter(url, "title_color") ?? "#FFFFFF";
   const commandColor = colorParamGetter(url, "command_color") ?? "#888";
-
-  console.log(topColors);
-  console.log(bottomColors);
-  console.log(topColor);
-  console.log(topColor);
 
   console.log("title:", title);
 

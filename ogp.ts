@@ -1,5 +1,6 @@
 import { createCanvas } from "https://deno.land/x/canvas/mod.ts";
 import { renderBottomStatusLine, renderTopStatusLine, renderPrompt, measureTextWithASCII, breakLines } from "./render.ts";
+import { serveFile, serveDir } from "https://deno.land/std@0.141.0/http/file_server.ts";
 
 const port = 8080;
 const textLineBase = 100;
@@ -26,6 +27,14 @@ const colorsParamGetter = (url: URL, key: string) => {
 
 const handler = async (request: Request): Promise<Response> => {
   const url = new URL(request.url);
+  if (url.pathname.startsWith("/generator")) { // URLが"/generator"始まりだった場合は
+    return await serveFile(request, `${Deno.cwd()}/static/index.html`);
+  }
+  if (url.pathname.startsWith("/static")) {
+    return await serveDir(request, {
+      fsRoot: "",
+    });
+  }
 
   const title = url.searchParams.get("title") ?? "No Title";
   const tagsParam = url.searchParams.get("tags");

@@ -1,4 +1,4 @@
-# til-ogp
+# deno-terminal-image
 
 OGP Image builder
 

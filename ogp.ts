@@ -5,7 +5,15 @@ import {
   renderBottomStatusLine,
   renderPrompt,
   renderTopStatusLine,
+  renderBackground,
+  renderCommand,
+  renderTitle,
+  renderCursor,
 } from "./render.ts";
+import {
+  defaultTheme
+} from "./theme.ts";
+
 import {
   serveDir,
   serveFile,
@@ -79,37 +87,14 @@ const handler = async (request: Request): Promise<Response> => {
   });
   ctx.font = "50pt notosans";
 
-  // background
-  ctx.fillStyle = bgColor;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+  renderBackground(ctx, bgColor, canvas.width, canvas.height);
   renderTopStatusLine(ctx, texts, topColors, topColor);
-
-  // Command
   renderPrompt(ctx, 10, textLineBase * 2, promptColor);
-  ctx.fillStyle = commandColor;
-  ctx.fillText("article --title \\", 80, textLineBase * 2);
-
-  // Title
+  renderCommand(ctx, 80, textLineBase * 2, commandColor);
   const titleLines = breakLines(ctx, title, 1150);
-  ctx.fillStyle = titleColor;
-  titleLines.forEach((line, i) => {
-    ctx.fillText(line, 50, 300 + i * textLineBase);
-  });
-
-  // Cursor
-  const lastLineWidth = measureTextWithASCII(ctx, titleLines.at(-1));
-  const cursorX = 50 + lastLineWidth + 10;
-  const cursorY = (textLineBase * 2) + 30 +
-    (titleLines.length - 1) * textLineBase;
-
-  ctx.fillStyle = cursorColor;
-  ctx.fillRect(cursorX, cursorY, 50, 100);
-
-  // タイトル表示を優先させるため、タイトルが3行までの場合はTagも表示させる
-  if (tags.length > 0 && titleLines.length <= 3) {
-    renderBottomStatusLine(ctx, tags, bottomColors, bottomColor);
-  }
+  renderTitle(ctx, titleLines, 50, 300, titleColor);
+  renderCursor(ctx, titleLines, 50, 100, cursorColor);
+  renderBottomStatusLine(ctx, tags, titleLines, bottomColors, bottomColor);
 
   const headers = new Headers();
   headers.set("content-type", "image/png");

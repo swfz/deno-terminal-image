@@ -122,7 +122,7 @@ const renderBottomStatusLine = (
   color: string,
 ) => {
   // タイトル表示を優先させるため、タイトルが3行までの場合はTagも表示させる
-  if (texts.length === 0 && titleLines.length > 3) {
+  if (texts.length === 0 || titleLines.length > 3) {
     return
   }
 

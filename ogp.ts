@@ -1,7 +1,6 @@
 import { createCanvas } from "https://deno.land/x/canvas/mod.ts";
 import {
   breakLines,
-  measureTextWithASCII,
   renderBottomStatusLine,
   renderPrompt,
   renderTopStatusLine,

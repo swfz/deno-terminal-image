@@ -78,6 +78,12 @@
         document.getElementById('url').value = url;
       }
 
+      function copyClipboard() {
+        const url = document.getElementById('url');
+        url.select();
+        document.execCommand('copy');
+      }
+
     </script>
   </head>
   <body>
@@ -321,6 +327,7 @@
       </div>
     </div>
     <div class="m-5">
+      <button onClick="copyClipboard()" class="border-gray-400 bg-gray-100 px-2 py-1 text-gray-800 hover:bg-gray-100">Copy</button>
       <input class="border w-full" type="text" id="url" placeholder="terminal image url" readonly/>
     </div>
     <div class="m-5">

@@ -1,4 +1,3 @@
-
 const defaultTheme = {
   topColors: ["#6797e8", "#a4e083", "#efb24a", "#ec7563"],
   bottomColors: ["#6797e8", "#a4e083", "#efb24a", "#ec7563"],
@@ -9,6 +8,6 @@ const defaultTheme = {
   bgColor: "#313d4f",
   titleColor: "#FFFFFF",
   commandColor: "#888888",
-}
+};
 
-export {defaultTheme}
+export { defaultTheme };

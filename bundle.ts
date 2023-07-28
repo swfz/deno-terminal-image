@@ -1,6 +1,6 @@
 import { bundle } from "https://deno.land/x/emit/mod.ts";
 
-const bundleCode = async(file: string) => {
+const bundleCode = async (file: string) => {
   const url = new URL(import.meta.resolve(file));
   const { code } = await bundle(url);
 
@@ -16,7 +16,7 @@ const bundleCode = async(file: string) => {
   );
 
   return exportRemovedCode;
-}
+};
 
 const renderCode = await bundleCode("./render.ts");
 const themeCode = await bundleCode("./theme.ts");

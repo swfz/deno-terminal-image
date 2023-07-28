@@ -1,22 +1,17 @@
 import { createCanvas } from "https://deno.land/x/canvas/mod.ts";
 import {
   breakLines,
-  renderBottomStatusLine,
-  renderPrompt,
-  renderTopStatusLine,
   renderBackground,
+  renderBottomStatusLine,
   renderCommand,
-  renderTitle,
   renderCursor,
+  renderPrompt,
+  renderTitle,
+  renderTopStatusLine,
 } from "./render.ts";
-import {
-  defaultTheme
-} from "./theme.ts";
+import { defaultTheme } from "./theme.ts";
 
-import {
-  serveDir,
-  serveFile,
-} from "https://deno.land/std@0.141.0/http/file_server.ts";
+import { serveDir, serveFile } from "https://deno.land/std@0.141.0/http/file_server.ts";
 
 const port = 8080;
 const textLineBase = 100;
@@ -38,9 +33,7 @@ const colorsParamGetter = (url: URL, key: string) => {
     return null;
   }
 
-  return param.split(",").filter((p) => isValidColorCode(p)).map((p) =>
-    `#${p}`
-  );
+  return param.split(",").filter((p) => isValidColorCode(p)).map((p) => `#${p}`);
 };
 
 const handler = async (request: Request): Promise<Response> => {

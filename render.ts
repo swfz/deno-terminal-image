@@ -27,7 +27,7 @@ const textLineBase = 100;
 
 const measuredCorrectly = (ctx: CanvasRenderingContext2D) => {
   return ctx.measureText("あ").width !== ctx.measureText("a").width;
-}
+};
 
 const selectASCII = (str: string) => {
   const matches = str.match(/[\x00-\x7F]/g);
@@ -123,7 +123,7 @@ const renderBottomStatusLine = (
 ) => {
   // タイトル表示を優先させるため、タイトルが3行までの場合はTagも表示させる
   if (texts.length === 0 || titleLines.length > 3) {
-    return
+    return;
   }
 
   ctx.fillStyle = "#333";
@@ -203,21 +203,27 @@ const renderTopStatusLine = (
 const renderBackground = (ctx: CanvasRenderingContext2D, color: string, width: number, height: number) => {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, width, height);
-}
+};
 
 const renderCommand = (ctx: CanvasRenderingContext2D, x: number, y: number, color: string) => {
   ctx.fillStyle = color;
   ctx.fillText("article --title \\", x, y);
-}
+};
 
 const renderTitle = (ctx: CanvasRenderingContext2D, titleLines: string[], x: number, y: number, color: string) => {
   ctx.fillStyle = color;
   titleLines.forEach((line, i) => {
     ctx.fillText(line, 50, 300 + i * textLineBase);
   });
-}
+};
 
-const renderCursor = (ctx: CanvasRenderingContext2D, titleLines: string[], width: number, height: number, color: string) => {
+const renderCursor = (
+  ctx: CanvasRenderingContext2D,
+  titleLines: string[],
+  width: number,
+  height: number,
+  color: string,
+) => {
   const lastLineWidth = measureTextWithASCII(ctx, titleLines.at(-1));
   const cursorX = 50 + lastLineWidth + 10;
   const cursorY = (textLineBase * 2) + 30 +
@@ -225,19 +231,19 @@ const renderCursor = (ctx: CanvasRenderingContext2D, titleLines: string[], width
 
   ctx.fillStyle = color;
   ctx.fillRect(cursorX, cursorY, width, height);
-}
+};
 
 export {
   breakLines,
   measureTextWithASCII,
+  renderBackground,
   renderBottomStatusLine,
+  renderCommand,
+  renderCursor,
   renderPrompt,
   renderStatusLineItem,
+  renderTitle,
   renderTopStatusLine,
   renderTriangle,
-  renderBackground,
-  renderCommand,
-  renderTitle,
-  renderCursor,
   textLineBase,
 };

@@ -11,28 +11,28 @@
       }
 
       function init() {
-        document.getElementById('texts').value = 'swfz,til';
-        document.getElementById('tags').value = 'hoge,fuga,piyo';
         document.getElementById('title').value = 'Terminal Image URL Generatorの開発中';
+        document.getElementById('top_line_texts').value = 'swfz,til';
+        document.getElementById('top_line_text_color').value = defaultTheme.topStatusLine.textColor;
+        document.getElementById('top_line_item_color1').value = defaultTheme.topStatusLine.itemColors[0];
+        document.getElementById('top_line_item_color2').value = defaultTheme.topStatusLine.itemColors[1];
+        document.getElementById('top_line_item_color3').value = defaultTheme.topStatusLine.itemColors[2];
+        document.getElementById('top_line_item_color4').value = defaultTheme.topStatusLine.itemColors[3];
+        document.getElementById('top_line_bg_text').value = '';
+        document.getElementById('top_line_bg_color').value = defaultTheme.topStatusLine.bgColor;
         document.getElementById('bg_color').value = defaultTheme.bgColor;
-        document.getElementById('top_color').value = defaultTheme.topColor;
-        document.getElementById('top_color1').value = defaultTheme.topColors[0];
-        document.getElementById('top_color2').value = defaultTheme.topColors[1];
-        document.getElementById('top_color3').value = defaultTheme.topColors[2];
-        document.getElementById('top_color4').value = defaultTheme.topColors[3];
-        document.getElementById('top_bg_color').value = defaultTheme.topBgColor;
-        document.getElementById('top_bg_text').value = '';
-        document.getElementById('bottom_color').value = defaultTheme.bottomColor;
-        document.getElementById('bottom_color1').value = defaultTheme.bottomColors[0];
-        document.getElementById('bottom_color2').value = defaultTheme.bottomColors[1];
-        document.getElementById('bottom_color3').value = defaultTheme.bottomColors[2];
-        document.getElementById('bottom_color4').value = defaultTheme.bottomColors[3];
-        document.getElementById('bottom_bg_color').value = defaultTheme.bottomBgColor;
-        document.getElementById('bottom_bg_text').value = 'Tags';
-        document.getElementById('title_color').value = defaultTheme.titleColor;
-        document.getElementById('command_color').value = defaultTheme.commandColor;
         document.getElementById('prompt_color').value = defaultTheme.promptColor;
+        document.getElementById('command_color').value = defaultTheme.commandColor;
+        document.getElementById('title_color').value = defaultTheme.titleColor;
         document.getElementById('cursor_color').value = defaultTheme.cursorColor;
+        document.getElementById('bottom_line_texts').value = 'hoge,fuga,piyo';
+        document.getElementById('bottom_line_text_color').value = defaultTheme.bottomStatusLine.textColor;
+        document.getElementById('bottom_line_item_color1').value = defaultTheme.bottomStatusLine.itemColors[0];
+        document.getElementById('bottom_line_item_color2').value = defaultTheme.bottomStatusLine.itemColors[1];
+        document.getElementById('bottom_line_item_color3').value = defaultTheme.bottomStatusLine.itemColors[2];
+        document.getElementById('bottom_line_item_color4').value = defaultTheme.bottomStatusLine.itemColors[3];
+        document.getElementById('bottom_line_bg_text').value = 'Tags';
+        document.getElementById('bottom_line_bg_color').value = defaultTheme.bottomStatusLine.bgColor;
       }
 
       function rmSharp(color) {
@@ -44,48 +44,66 @@
         const ctx = canvas.getContext('2d');
         ctx.font = "50pt 'Noto Sans JP'";
 
-        const titleColor = document.querySelector('#title_color').value;
-        const topColor = document.querySelector('#top_color').value;
-        const topColor1 = document.querySelector('#top_color1').value;
-        const topColor2 = document.querySelector('#top_color2').value;
-        const topColor3 = document.querySelector('#top_color3').value;
-        const topColor4 = document.querySelector('#top_color4').value;
-        const topBgColor = document.querySelector('#top_bg_color').value;
-        const topBgText = document.querySelector('#top_bg_text').value;
-        const bottomColor = document.querySelector('#bottom_color').value;
-        const bottomColor1 = document.querySelector('#bottom_color1').value;
-        const bottomColor2 = document.querySelector('#bottom_color2').value;
-        const bottomColor3 = document.querySelector('#bottom_color3').value;
-        const bottomColor4 = document.querySelector('#bottom_color4').value;
-        const bottomBgColor = document.querySelector('#bottom_bg_color').value;
-        const bottomBgText = document.querySelector('#bottom_bg_text').value;
-        const commandColor = document.querySelector('#command_color').value;
-        const promptColor = document.querySelector('#prompt_color').value;
-        const cursorColor = document.querySelector('#cursor_color').value;
-        const bgColor = document.querySelector('#bg_color').value;
         const title = document.querySelector('#title').value;
+        const topLineTextColor = document.querySelector('#top_line_text_color').value;
+        const topLineItemColor1 = document.querySelector('#top_line_item_color1').value;
+        const topLineItemColor2 = document.querySelector('#top_line_item_color2').value;
+        const topLineItemColor3 = document.querySelector('#top_line_item_color3').value;
+        const topLineItemColor4 = document.querySelector('#top_line_item_color4').value;
+        const topLineBgText = document.querySelector('#top_line_bg_text').value;
+        const topLineBgColor = document.querySelector('#top_line_bg_color').value;
+        const bgColor = document.querySelector('#bg_color').value;
+        const promptColor = document.querySelector('#prompt_color').value;
+        const commandColor = document.querySelector('#command_color').value;
+        const titleColor = document.querySelector('#title_color').value;
+        const cursorColor = document.querySelector('#cursor_color').value;
 
-        const textsInput = document.querySelector('#texts').value;
-        const tagsInput = document.querySelector('#tags').value;
-        const texts = textsInput !== '' ? textsInput.split(',') : [];
-        const tags = tagsInput !== '' ? tagsInput.split(',') : [];
+        const bottomLineTextColor = document.querySelector('#bottom_line_text_color').value;
+        const bottomLineItemColor1 = document.querySelector('#bottom_line_item_color1').value;
+        const bottomLineItemColor2 = document.querySelector('#bottom_line_item_color2').value;
+        const bottomLineItemColor3 = document.querySelector('#bottom_line_item_color3').value;
+        const bottomLineItemColor4 = document.querySelector('#bottom_line_item_color4').value;
+        const bottomLineBgText = document.querySelector('#bottom_line_bg_text').value;
+        const bottomLineBgColor = document.querySelector('#bottom_line_bg_color').value;
 
-        const topColors = [topColor1, topColor2, topColor3, topColor4];
-        const bottomColors = [bottomColor1, bottomColor2, bottomColor3, bottomColor4];
+        const topLineTextsInput = document.querySelector('#top_line_texts').value;
+        const bottomLineTextsInput = document.querySelector('#bottom_line_texts').value;
+        const topLineTexts = topLineTextsInput !== '' ? topLineTextsInput.split(',') : [];
+        const bottomLineTexts = bottomLineTextsInput !== '' ? bottomLineTextsInput.split(',') : [];
+
+        const topLineItemColors = [topLineItemColor1, topLineItemColor2, topLineItemColor3, topLineItemColor4];
+        const bottomLineItemColors = [bottomLineItemColor1, bottomLineItemColor2, bottomLineItemColor3, bottomLineItemColor4];
 
         renderBackground(ctx, bgColor, canvas.width, canvas.height);
-        renderTopStatusLine(ctx, texts, topColors, topBgColor, topBgText, topColor);
+        renderTopStatusLine(ctx, topLineTexts, topLineItemColors, topLineBgColor, topLineBgText, topLineTextColor);
         renderPrompt(ctx, 10, textLineBase * 2, promptColor);
         renderCommand(ctx, 80, textLineBase * 2, commandColor);
         const titleLines = breakLines(ctx, title, 1150);
         renderTitle(ctx, titleLines, 50, 300, titleColor);
         renderCursor(ctx, titleLines, 50, 100, cursorColor);
-        renderBottomStatusLine(ctx, tags, titleLines, bottomColors, bottomBgColor, bottomBgText, bottomColor);
+        renderBottomStatusLine(ctx, bottomLineTexts, titleLines, bottomLineItemColors, bottomLineBgColor, bottomLineBgText, bottomLineTextColor);
 
-        const topColorsParam = topColors.map((color) => rmSharp(color)).join(',');
-        const bottomColorsParam = bottomColors.map((color) => rmSharp(color)).join(',');
+        const topLineItemColorsParam = topLineItemColors.map((color) => rmSharp(color)).join(',');
+        const bottomLineItemColorsParam = bottomLineItemColors.map((color) => rmSharp(color)).join(',');
 
-        const url = `https://terminal-image.deno.dev/?title=${title}&texts=${texts.join(',')}&tags=${tags.join(',')}&top_color=${rmSharp(topColor)}&top_colors=${topColorsParam}&bottom_color=${rmSharp(bottomColor)}&bottom_colors=${bottomColorsParam}&title_color=${rmSharp(titleColor)}&command_color=${rmSharp(commandColor)}&prompt_color=${rmSharp(promptColor)}&cursor_color=${rmSharp(cursorColor)}&bg_color=${rmSharp(bgColor)}`;
+        const url = `https://terminal-image.deno.dev/?title=${title}
+&top_line_texts=${topLineTexts.join(',')}
+&bottom_line_texts=${bottomLineTexts.join(',')}
+&top_line_text_color=${rmSharp(topLineTextColor)}
+&top_line_item_colors=${topLineItemColorsParam}
+&bottom_line_text_color=${rmSharp(bottomLineTextColor)}
+&bottom_line_item_colors=${bottomLineItemColorsParam}
+&title_color=${rmSharp(titleColor)}
+&command_color=${rmSharp(commandColor)}
+&prompt_color=${rmSharp(promptColor)}
+&cursor_color=${rmSharp(cursorColor)}
+&bg_color=${rmSharp(bgColor)}
+&top_line_bg_color=${rmSharp(topLineBgColor)}
+&bottom_line_bg_color=${rmSharp(bottomLineBgColor)}
+&top_line_bg_text=${topLineBgText}
+&bottom_line_bg_text=${bottomLineBgText}
+`;
+
         document.getElementById('url').value = url;
       }
 
@@ -104,7 +122,7 @@
     <div class="border m-5">
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="texts">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_texts">
             Terminal Texts:
           </label>
           <span class="basis-2/6">
@@ -112,8 +130,8 @@
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="text"
-              placeholder="texts"
-              id="texts"
+              placeholder="top_line_texts"
+              id="top_line_texts"
             />
           </span>
         </div>
@@ -128,36 +146,36 @@
               class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="top_color1"
-              id="top_color1"
+              placeholder="top_line_item_color1"
+              id="top_line_item_color1"
             />
             <input
               class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="top_color2"
-              id="top_color2"
+              placeholder="top_line_item_color2"
+              id="top_line_item_color2"
             />
             <input
               class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="top_color3"
-              id="top_color3"
+              placeholder="top_line_item_color3"
+              id="top_line_item_color3"
             />
             <input
               class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="top_color4"
-              id="top_color4"
+              placeholder="top_line_item_color4"
+              id="top_line_item_color4"
             />
           </span>
         </div>
       </div>
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_bg_color">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_bg_color">
             Top StatusLine Background Color:
           </label>
           <span class="basis-2/6">
@@ -165,15 +183,15 @@
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="top_bg_color"
-              id="top_bg_color"
+              placeholder="top_line_bg_color"
+              id="top_line_bg_color"
             />
           </span>
         </div>
       </div>
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_color">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_text_color">
             Top StatusLine Text Color:
           </label>
           <span class="basis-2/6">
@@ -181,15 +199,15 @@
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="top_color"
-              id="top_color"
+              placeholder="top_line_text_color"
+              id="top_line_text_color"
             />
           </span>
         </div>
       </div>
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_bg_text">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_bg_text">
             Top StatusLine Background Text:
           </label>
           <span class="basis-2/6">
@@ -197,8 +215,8 @@
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="text"
-              placeholder="top_bg_text"
-              id="top_bg_text"
+              placeholder="top_line_bg_text"
+              id="top_line_bg_text"
             />
           </span>
         </div>
@@ -285,16 +303,16 @@
       </div>
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="tags">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_texts">
             Terminal Texts(Tags):
           </label>
           <span class="basis-2/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
-              type="tags"
-              placeholder="tags"
-              id="tags"
+              type="bottom_line_texts"
+              placeholder="bottom_line_texts"
+              id="bottom_line_texts"
             />
           </span>
         </div>
@@ -309,36 +327,36 @@
               class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="bottom_color1"
-              id="bottom_color1"
+              placeholder="bottom_line_item_color1"
+              id="bottom_line_item_color1"
             />
             <input
               class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="bottom_color2"
-              id="bottom_color2"
+              placeholder="bottom_line_item_color2"
+              id="bottom_line_item_color2"
             />
             <input
               class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="bottom_color3"
-              id="bottom_color3"
+              placeholder="bottom_line_item_color3"
+              id="bottom_line_item_color3"
             />
             <input
               class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="bottom_color4"
-              id="bottom_color4"
+              placeholder="bottom_line_item_color4"
+              id="bottom_line_item_color4"
             />
           </span>
         </div>
       </div>
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_bg_color">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_bg_color">
             Bottom StatusLine Background Color:
           </label>
           <span class="basis-2/6">
@@ -346,15 +364,15 @@
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="bottom_bg_color"
-              id="bottom_bg_color"
+              placeholder="bottom_line_bg_color"
+              id="bottom_line_bg_color"
             />
           </span>
         </div>
       </div>
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_color">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_text_color">
             Bottom StatusLine Text Color:
           </label>
           <span class="basis-2/6">
@@ -362,15 +380,15 @@
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="bottom_color"
-              id="bottom_color"
+              placeholder="bottom_line_text_color"
+              id="bottom_line_text_color"
             />
           </span>
         </div>
       </div>
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_bg_text">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_bg_text">
             Bottom StatusLine Background Text:
           </label>
           <span class="basis-2/6">
@@ -378,8 +396,8 @@
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="text"
-              placeholder="bottom_bg_text"
-              id="bottom_bg_text"
+              placeholder="bottom_line_bg_text"
+              id="bottom_line_bg_text"
             />
           </span>
         </div>

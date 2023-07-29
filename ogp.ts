@@ -48,20 +48,22 @@ const handler = async (request: Request): Promise<Response> => {
   }
 
   const title = url.searchParams.get("title") ?? "No Title";
-  const tagsParam = url.searchParams.get("tags");
-  const tags = tagsParam ? tagsParam.split(",") : [];
+  const bottomLineTextsParam = url.searchParams.get("bottom_line_texts");
+  const bottomLineTexts = bottomLineTextsParam ? bottomLineTextsParam.split(",") : [];
+  const topLineTextsParam = url.searchParams.get("top_line_texts");
+  const topLineTexts = topLineTextsParam ? topLineTextsParam.split(",") : ["swfz", "til"];
 
-  const textsParam = url.searchParams.get("texts");
-  const texts = textsParam ? textsParam.split(",") : ["swfz", "til"];
-  const bottomBgText = url.searchParams.get("bottom_bg_text") ?? "Tags";
-  const topBgText = url.searchParams.get("top_bg_text") ?? null;
+  const bottomLineBgText = url.searchParams.get("bottom_line_bg_text") ?? "Tags";
+  const topLineBgText = url.searchParams.get("top_line_bg_text") ?? null;
 
-  const topColors = colorsParamGetter(url, "top_colors") ?? defaultTheme.topColors;
-  const topBgColor = colorParamGetter(url, "top_bg_color") ?? defaultTheme.topBgColor;
-  const topColor = colorParamGetter(url, "top_color") ?? defaultTheme.topColor;
-  const bottomColors = colorsParamGetter(url, "bottom_colors") ?? defaultTheme.bottomColors;
-  const bottomBgColor = colorParamGetter(url, "bottom_bg_color") ?? defaultTheme.bottomBgColor;
-  const bottomColor = colorParamGetter(url, "bottom_color") ?? defaultTheme.bottomColor;
+  const topLineItemColors = colorsParamGetter(url, "top_line_item_colors") ?? defaultTheme.topStatusLine.itemColors;
+  const topLineBgColor = colorParamGetter(url, "top_line_bg_color") ?? defaultTheme.topStatusLine.bgColor;
+  const topLineTextColor = colorParamGetter(url, "top_line_text_color") ?? defaultTheme.topStatusLine.textColor;
+  const bottomLineItemColors = colorsParamGetter(url, "bottom_line_item_colors") ??
+    defaultTheme.bottomStatusLine.itemColors;
+  const bottomLineBgColor = colorParamGetter(url, "bottom_line_bg_color") ?? defaultTheme.bottomStatusLine.bgColor;
+  const bottomLineTextColor = colorParamGetter(url, "bottom_line_text_color") ??
+    defaultTheme.bottomStatusLine.textColor;
   const cursorColor = colorParamGetter(url, "cursor_color") ?? defaultTheme.cursorColor;
   const promptColor = colorParamGetter(url, "prompt_color") ?? defaultTheme.promptColor;
   const bgColor = colorParamGetter(url, "bg_color") ?? defaultTheme.bgColor;
@@ -82,13 +84,21 @@ const handler = async (request: Request): Promise<Response> => {
   ctx.font = "50pt notosans";
 
   renderBackground(ctx, bgColor, canvas.width, canvas.height);
-  renderTopStatusLine(ctx, texts, topColors, topBgColor, topBgText, topColor);
+  renderTopStatusLine(ctx, topLineTexts, topLineItemColors, topLineBgColor, topLineBgText, topLineTextColor);
   renderPrompt(ctx, 10, textLineBase * 2, promptColor);
   renderCommand(ctx, 80, textLineBase * 2, commandColor);
   const titleLines = breakLines(ctx, title, 1150);
   renderTitle(ctx, titleLines, 50, 300, titleColor);
   renderCursor(ctx, titleLines, 50, 100, cursorColor);
-  renderBottomStatusLine(ctx, tags, titleLines, bottomColors, bottomBgColor, bottomBgText, bottomColor);
+  renderBottomStatusLine(
+    ctx,
+    bottomLineTexts,
+    titleLines,
+    bottomLineItemColors,
+    bottomLineBgColor,
+    bottomLineBgText,
+    bottomLineTextColor,
+  );
 
   const headers = new Headers();
   headers.set("content-type", "image/png");

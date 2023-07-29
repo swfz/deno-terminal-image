@@ -52,10 +52,29 @@ const solarizedLight = {
   cursorColor: "#fdf6e3",
 };
 
+const monochromeMonitor = {
+  topStatusLine: {
+    itemColors: ["#6fe252", "#54ae3f", "#2f6624", "#133311"],
+    textColor: "#000000",
+    bgColor: "#071b06",
+  },
+  bottomStatusLine: {
+    itemColors: ["#133311", "#2f6624", "#54ae3f", "#6fe252"],
+    textColor: "#000000",
+    bgColor: "#071b06",
+  },
+  bgColor: "#000000",
+  promptColor: "#75ed57",
+  commandColor: "#75ed57",
+  titleColor: "#75ed57",
+  cursorColor: "#75ed57",
+};
+
 const themes = {
   default: defaultTheme,
   solarizedDark: solarizedDark,
   solarizedLight: solarizedLight,
+  monochromeMonitor: monochromeMonitor,
 };
 
 export { defaultTheme, solarizedDark, solarizedLight, themes };

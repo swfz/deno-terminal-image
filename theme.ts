@@ -16,4 +16,46 @@ const defaultTheme = {
   cursorColor: "#ec80f7",
 };
 
-export { defaultTheme };
+const solarizedDark = {
+  topStatusLine: {
+    itemColors: ["#278bd2", "#2aa198", "#b58901", "#6c71c4"],
+    textColor: "#002834",
+    bgColor: "#073642",
+  },
+  bottomStatusLine: {
+    itemColors: ["#278bd2", "#2aa198", "#b58901", "#6c71c4"],
+    textColor: "#002834",
+    bgColor: "#073642",
+  },
+  bgColor: "#002834",
+  promptColor: "#d33682",
+  commandColor: "#93a1a1",
+  titleColor: "#ffffff",
+  cursorColor: "#fdf6e3",
+}
+
+const solarizedLight = {
+  topStatusLine: {
+    itemColors: ["#278bd2", "#2aa198", "#b58901", "#6c71c4"],
+    textColor: "#fdf6e3",
+    bgColor: "#eee8d5",
+  },
+  bottomStatusLine: {
+    itemColors: ["#278bd2", "#2aa198", "#b58901", "#6c71c4"],
+    textColor: "#fdf6e3",
+    bgColor: "#eee8d5",
+  },
+  bgColor: "#fdf6e3",
+  promptColor: "#b58900",
+  commandColor: "#93a1a1",
+  titleColor: "#586e75",
+  cursorColor: "#fdf6e3",
+}
+
+const themes = {
+  default: defaultTheme,
+  solarizedDark: solarizedDark,
+  solarizedLight: solarizedLight,
+}
+
+export { defaultTheme, solarizedDark, solarizedLight, themes };

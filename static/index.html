@@ -6,37 +6,42 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       window.onload = (ev) => {
-        init();
+        init(defaultTheme);
         render();
       }
 
-      function init() {
+      function init(theme) {
         document.getElementById('title').value = 'Terminal Image URL Generatorの開発中';
         document.getElementById('top_line_texts').value = 'swfz,til';
-        document.getElementById('top_line_text_color').value = defaultTheme.topStatusLine.textColor;
-        document.getElementById('top_line_item_color1').value = defaultTheme.topStatusLine.itemColors[0];
-        document.getElementById('top_line_item_color2').value = defaultTheme.topStatusLine.itemColors[1];
-        document.getElementById('top_line_item_color3').value = defaultTheme.topStatusLine.itemColors[2];
-        document.getElementById('top_line_item_color4').value = defaultTheme.topStatusLine.itemColors[3];
+        document.getElementById('top_line_text_color').value = theme.topStatusLine.textColor;
+        document.getElementById('top_line_item_color1').value = theme.topStatusLine.itemColors[0];
+        document.getElementById('top_line_item_color2').value = theme.topStatusLine.itemColors[1];
+        document.getElementById('top_line_item_color3').value = theme.topStatusLine.itemColors[2];
+        document.getElementById('top_line_item_color4').value = theme.topStatusLine.itemColors[3];
         document.getElementById('top_line_bg_text').value = '';
-        document.getElementById('top_line_bg_color').value = defaultTheme.topStatusLine.bgColor;
-        document.getElementById('bg_color').value = defaultTheme.bgColor;
-        document.getElementById('prompt_color').value = defaultTheme.promptColor;
-        document.getElementById('command_color').value = defaultTheme.commandColor;
-        document.getElementById('title_color').value = defaultTheme.titleColor;
-        document.getElementById('cursor_color').value = defaultTheme.cursorColor;
+        document.getElementById('top_line_bg_color').value = theme.topStatusLine.bgColor;
+        document.getElementById('bg_color').value = theme.bgColor;
+        document.getElementById('prompt_color').value = theme.promptColor;
+        document.getElementById('command_color').value = theme.commandColor;
+        document.getElementById('title_color').value = theme.titleColor;
+        document.getElementById('cursor_color').value = theme.cursorColor;
         document.getElementById('bottom_line_texts').value = 'hoge,fuga,piyo';
-        document.getElementById('bottom_line_text_color').value = defaultTheme.bottomStatusLine.textColor;
-        document.getElementById('bottom_line_item_color1').value = defaultTheme.bottomStatusLine.itemColors[0];
-        document.getElementById('bottom_line_item_color2').value = defaultTheme.bottomStatusLine.itemColors[1];
-        document.getElementById('bottom_line_item_color3').value = defaultTheme.bottomStatusLine.itemColors[2];
-        document.getElementById('bottom_line_item_color4').value = defaultTheme.bottomStatusLine.itemColors[3];
+        document.getElementById('bottom_line_text_color').value = theme.bottomStatusLine.textColor;
+        document.getElementById('bottom_line_item_color1').value = theme.bottomStatusLine.itemColors[0];
+        document.getElementById('bottom_line_item_color2').value = theme.bottomStatusLine.itemColors[1];
+        document.getElementById('bottom_line_item_color3').value = theme.bottomStatusLine.itemColors[2];
+        document.getElementById('bottom_line_item_color4').value = theme.bottomStatusLine.itemColors[3];
         document.getElementById('bottom_line_bg_text').value = 'Tags';
-        document.getElementById('bottom_line_bg_color').value = defaultTheme.bottomStatusLine.bgColor;
+        document.getElementById('bottom_line_bg_color').value = theme.bottomStatusLine.bgColor;
       }
 
       function rmSharp(color) {
         return color.replace('#', '');
+      }
+
+      function changeTheme(name) {
+        init(themes[name]);
+        render();
       }
 
       function render() {
@@ -119,6 +124,22 @@
     <h1 class="m-5 text-gray-800 text-3xl">
       Terminal Image URL Generator
     </h1>
+    <div class="flex flex-row justify-end pr-10">
+      <div class="">
+        <span>
+          Themes:
+        </span>
+        <button class="border-2 rounded border-gray-400 p-1" onClick="changeTheme('default')">
+          default
+        </button>
+        <button class="border-2 rounded border-gray-400 p-1" onClick="changeTheme('solarizedDark')">
+          solarizedDark
+        </button>
+        <button class="border-2 rounded border-gray-400 p-1" onClick="changeTheme('solarizedLight')">
+          solarizedLight
+        </button>
+      </div>
+    </div>
     <div class="border m-5">
       <div class="grid grid-rows-16 grid-cols-6 gap-4 ml-2">
         <div class="font-bold text-xl">
@@ -150,7 +171,7 @@
               id="top_line_texts"
             />
           </span>
-          <span class="basis-3/6"></span>
+          <span class="basis-3/6">Top StatusLine texts</span>
         </div>
       </div>
 

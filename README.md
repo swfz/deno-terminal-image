@@ -14,21 +14,24 @@ https://terminal-image.deno.dev/?title=awesome_title&tags=tag1,tag2,tag3
 
 available GET url parameters
 
-| key | value | remark |
-|:-|:-|:-|
-| title | title | required |
-| texts | StatusLine Texts. separeted `,` | e.g) hoge,fuga |
-| top_colors | Top StatusLine background colors, separeted `,`, removed `#` | e.g) 999999,EFEFEF |
-| top_color | Top StatusLine texts color, removed `#` | e.g) 999999 |
-| bottom_colors | Bottom StatusLine background colors, separeted `,`, removed `#` | e.g) 999999,EFEFEF |
-| bottom_color | Bottom StatusLine texts color, removed `#` | e.g) 999999 |
-| prompt_color | Prompt(`$`) color, removed `#` | |
-| title_color | Title color, removed `#` | |
-| cursor_color | Cursor color, removed `#` | |
-| tags | Bottom StatusLine texts, separeted `,` | e.g) JavaScript,Deno |
-| bg_color | Background color | |
-| command_color | Command(`article --title`) color | |
-
+| key             | value                                                           | remark               |
+| :-------------- | :-------------------------------------------------------------- | :------------------- |
+| title           | title                                                           | required             |
+| texts           | StatusLine Texts. separeted `,`                                 | e.g) hoge,fuga       |
+| top_colors      | Top StatusLine background colors, separeted `,`, removed `#`    | e.g) 999999,EFEFEF   |
+| top_color       | Top StatusLine texts color, removed `#`                         | e.g) 999999          |
+| top_bg_color    | Top StatusLine Background color, removed `#`                    | e.g) 999999          |
+| top_bg_text     | Top StatusLine Background text                                  | e.g) Status          |
+| bottom_colors   | Bottom StatusLine background colors, separeted `,`, removed `#` | e.g) 999999,EFEFEF   |
+| bottom_color    | Bottom StatusLine texts color, removed `#`                      | e.g) 999999          |
+| bottom_bg_color | Bottom StatusLine Background color, removed `#`                 | e.g) 999999          |
+| bottom_bg_text  | Bottom StatusLine Background text                               | e.g) Tags            |
+| prompt_color    | Prompt(`$`) color, removed `#`                                  |                      |
+| title_color     | Title color, removed `#`                                        |                      |
+| cursor_color    | Cursor color, removed `#`                                       |                      |
+| tags            | Bottom StatusLine texts, separeted `,`                          | e.g) JavaScript,Deno |
+| bg_color        | Background color                                                |                      |
+| command_color   | Command(`article --title`) color                                |                      |
 
 ## URL Generator
 

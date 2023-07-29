@@ -119,6 +119,8 @@ const renderBottomStatusLine = (
   texts: string[],
   titleLines: string[],
   colors: string[],
+  bgColor: string,
+  bgText: string,
   color: string,
 ) => {
   // タイトル表示を優先させるため、タイトルが3行までの場合はTagも表示させる
@@ -126,10 +128,10 @@ const renderBottomStatusLine = (
     return;
   }
 
-  ctx.fillStyle = "#333";
+  ctx.fillStyle = bgColor;
   ctx.fillRect(0, 540, 1200, 80);
-  ctx.fillStyle = "#999";
-  ctx.fillText("Tags", 10, 600);
+  ctx.fillStyle = color;
+  ctx.fillText(bgText, 10, 600);
 
   const tagsStartPositions = texts.reverse().reduce((acc, tag, i) => {
     const textWidth = measureTextWithASCII(ctx, tag);
@@ -166,8 +168,18 @@ const renderTopStatusLine = (
   ctx: CanvasRenderingContext2D,
   texts: string[],
   colors: string[],
+  bgColor: string,
+  bgText: string,
   color: string,
 ) => {
+  if (bgText) {
+    const bgTextWidth = measureTextWithASCII(ctx, bgText);
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 30, 1200, 80);
+    ctx.fillStyle = color;
+    ctx.fillText(bgText, 1200 - bgTextWidth - 10, 90);
+  }
+
   const startPositions = texts.reduce((acc, text) => {
     const textWidth = measureTextWithASCII(ctx, text);
     const x = acc.at(-1) + textWidth;

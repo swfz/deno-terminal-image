@@ -53,10 +53,14 @@ const handler = async (request: Request): Promise<Response> => {
 
   const textsParam = url.searchParams.get("texts");
   const texts = textsParam ? textsParam.split(",") : ["swfz", "til"];
+  const bottomBgText = url.searchParams.get("bottom_bg_text") ?? "Tags";
+  const topBgText = url.searchParams.get("top_bg_text") ?? null;
 
   const topColors = colorsParamGetter(url, "top_colors") ?? defaultTheme.topColors;
-  const bottomColors = colorsParamGetter(url, "bottom_colors") ?? defaultTheme.bottomColors;
+  const topBgColor = colorParamGetter(url, "top_bg_color") ?? defaultTheme.topBgColor;
   const topColor = colorParamGetter(url, "top_color") ?? defaultTheme.topColor;
+  const bottomColors = colorsParamGetter(url, "bottom_colors") ?? defaultTheme.bottomColors;
+  const bottomBgColor = colorParamGetter(url, "bottom_bg_color") ?? defaultTheme.bottomBgColor;
   const bottomColor = colorParamGetter(url, "bottom_color") ?? defaultTheme.bottomColor;
   const cursorColor = colorParamGetter(url, "cursor_color") ?? defaultTheme.cursorColor;
   const promptColor = colorParamGetter(url, "prompt_color") ?? defaultTheme.promptColor;
@@ -78,13 +82,13 @@ const handler = async (request: Request): Promise<Response> => {
   ctx.font = "50pt notosans";
 
   renderBackground(ctx, bgColor, canvas.width, canvas.height);
-  renderTopStatusLine(ctx, texts, topColors, topColor);
+  renderTopStatusLine(ctx, texts, topColors, topBgColor, topBgText, topColor);
   renderPrompt(ctx, 10, textLineBase * 2, promptColor);
   renderCommand(ctx, 80, textLineBase * 2, commandColor);
   const titleLines = breakLines(ctx, title, 1150);
   renderTitle(ctx, titleLines, 50, 300, titleColor);
   renderCursor(ctx, titleLines, 50, 100, cursorColor);
-  renderBottomStatusLine(ctx, tags, titleLines, bottomColors, bottomColor);
+  renderBottomStatusLine(ctx, tags, titleLines, bottomColors, bottomBgColor, bottomBgText, bottomColor);
 
   const headers = new Headers();
   headers.set("content-type", "image/png");

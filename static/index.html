@@ -20,11 +20,15 @@
         document.getElementById('top_color2').value = defaultTheme.topColors[1];
         document.getElementById('top_color3').value = defaultTheme.topColors[2];
         document.getElementById('top_color4').value = defaultTheme.topColors[3];
+        document.getElementById('top_bg_color').value = defaultTheme.topBgColor;
+        document.getElementById('top_bg_text').value = '';
         document.getElementById('bottom_color').value = defaultTheme.bottomColor;
         document.getElementById('bottom_color1').value = defaultTheme.bottomColors[0];
         document.getElementById('bottom_color2').value = defaultTheme.bottomColors[1];
         document.getElementById('bottom_color3').value = defaultTheme.bottomColors[2];
         document.getElementById('bottom_color4').value = defaultTheme.bottomColors[3];
+        document.getElementById('bottom_bg_color').value = defaultTheme.bottomBgColor;
+        document.getElementById('bottom_bg_text').value = 'Tags';
         document.getElementById('title_color').value = defaultTheme.titleColor;
         document.getElementById('command_color').value = defaultTheme.commandColor;
         document.getElementById('prompt_color').value = defaultTheme.promptColor;
@@ -46,11 +50,15 @@
         const topColor2 = document.querySelector('#top_color2').value;
         const topColor3 = document.querySelector('#top_color3').value;
         const topColor4 = document.querySelector('#top_color4').value;
+        const topBgColor = document.querySelector('#top_bg_color').value;
+        const topBgText = document.querySelector('#top_bg_text').value;
         const bottomColor = document.querySelector('#bottom_color').value;
         const bottomColor1 = document.querySelector('#bottom_color1').value;
         const bottomColor2 = document.querySelector('#bottom_color2').value;
         const bottomColor3 = document.querySelector('#bottom_color3').value;
         const bottomColor4 = document.querySelector('#bottom_color4').value;
+        const bottomBgColor = document.querySelector('#bottom_bg_color').value;
+        const bottomBgText = document.querySelector('#bottom_bg_text').value;
         const commandColor = document.querySelector('#command_color').value;
         const promptColor = document.querySelector('#prompt_color').value;
         const cursorColor = document.querySelector('#cursor_color').value;
@@ -66,13 +74,13 @@
         const bottomColors = [bottomColor1, bottomColor2, bottomColor3, bottomColor4];
 
         renderBackground(ctx, bgColor, canvas.width, canvas.height);
-        renderTopStatusLine(ctx, texts, topColors, topColor);
+        renderTopStatusLine(ctx, texts, topColors, topBgColor, topBgText, topColor);
         renderPrompt(ctx, 10, textLineBase * 2, promptColor);
         renderCommand(ctx, 80, textLineBase * 2, commandColor);
         const titleLines = breakLines(ctx, title, 1150);
         renderTitle(ctx, titleLines, 50, 300, titleColor);
         renderCursor(ctx, titleLines, 50, 100, cursorColor);
-        renderBottomStatusLine(ctx, tags, titleLines, bottomColors, bottomColor);
+        renderBottomStatusLine(ctx, tags, titleLines, bottomColors, bottomBgColor, bottomBgText, bottomColor);
 
         const topColorsParam = topColors.map((color) => rmSharp(color)).join(',');
         const bottomColorsParam = bottomColors.map((color) => rmSharp(color)).join(',');
@@ -113,7 +121,7 @@
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
           <label class="ml-2 basis-1/6 font-bold text-gray-700">
-            Top StatusLine Background Colors:
+            Top StatusLine Item Background Colors:
           </label>
           <span class="basis-5/6">
             <input
@@ -149,6 +157,22 @@
       </div>
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_bg_color">
+            Top StatusLine Background Color:
+          </label>
+          <span class="basis-2/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="top_bg_color"
+              id="top_bg_color"
+            />
+          </span>
+        </div>
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
           <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_color">
             Top StatusLine Text Color:
           </label>
@@ -159,6 +183,22 @@
               type="color"
               placeholder="top_color"
               id="top_color"
+            />
+          </span>
+        </div>
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_bg_text">
+            Top StatusLine Background Text:
+          </label>
+          <span class="basis-2/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="text"
+              placeholder="top_bg_text"
+              id="top_bg_text"
             />
           </span>
         </div>
@@ -262,7 +302,7 @@
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
           <label class="ml-2 basis-1/6 font-bold text-gray-700">
-            Bottom StatusLine Background Colors:
+            Bottom StatusLine Item Background Colors:
           </label>
           <span class="basis-5/6">
             <input
@@ -298,6 +338,22 @@
       </div>
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_bg_color">
+            Bottom StatusLine Background Color:
+          </label>
+          <span class="basis-2/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="bottom_bg_color"
+              id="bottom_bg_color"
+            />
+          </span>
+        </div>
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
           <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_color">
             Bottom StatusLine Text Color:
           </label>
@@ -308,6 +364,22 @@
               type="color"
               placeholder="bottom_color"
               id="bottom_color"
+            />
+          </span>
+        </div>
+      </div>
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_bg_text">
+            Bottom StatusLine Background Text:
+          </label>
+          <span class="basis-2/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="text"
+              placeholder="bottom_bg_text"
+              id="bottom_bg_text"
             />
           </span>
         </div>

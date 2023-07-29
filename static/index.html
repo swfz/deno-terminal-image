@@ -120,12 +120,28 @@
       Terminal Image URL Generator
     </h1>
     <div class="border m-5">
+      <div class="grid grid-rows-16 grid-cols-6 gap-4 ml-2">
+        <div class="font-bold text-xl">
+          category
+        </div>
+        <div class="font-bold text-xl">
+          parameter name
+        </div>
+        <div class="font-bold text-xl">
+          input
+        </div>
+        <div class="font-bold text-xl col-span-3">
+          description
+        </div>
+      </div>
+
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">TopStatusLine</span>
           <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_texts">
-            Terminal Texts:
+            top_line_texts
           </label>
-          <span class="basis-2/6">
+          <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
@@ -134,67 +150,17 @@
               id="top_line_texts"
             />
           </span>
+          <span class="basis-3/6"></span>
         </div>
       </div>
+
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700">
-            Top StatusLine Item Background Colors:
-          </label>
-          <span class="basis-5/6">
-            <input
-              class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="top_line_item_color1"
-              id="top_line_item_color1"
-            />
-            <input
-              class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="top_line_item_color2"
-              id="top_line_item_color2"
-            />
-            <input
-              class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="top_line_item_color3"
-              id="top_line_item_color3"
-            />
-            <input
-              class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="top_line_item_color4"
-              id="top_line_item_color4"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_bg_color">
-            Top StatusLine Background Color:
-          </label>
-          <span class="basis-2/6">
-            <input
-              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="top_line_bg_color"
-              id="top_line_bg_color"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">TopStatusLine</span>
           <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_text_color">
-            Top StatusLine Text Color:
+            top_line_text_color
           </label>
-          <span class="basis-2/6">
+          <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
@@ -203,14 +169,57 @@
               id="top_line_text_color"
             />
           </span>
+          <span class="basis-3/6">Top StatusLine Text Color</span>
         </div>
       </div>
+
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_bg_text">
-            Top StatusLine Background Text:
+          <span class="basis-1/6 font-bold">TopStatusLine</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700">
+            top_line_item_colors
           </label>
-          <span class="basis-2/6">
+          <span class="basis-1/6">
+            <input
+              class="h-6 w-16 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="top_line_item_color1"
+              id="top_line_item_color1"
+            />
+            <input
+              class="h-6 w-16 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="top_line_item_color2"
+              id="top_line_item_color2"
+            />
+            <input
+              class="h-6 w-16 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="top_line_item_color3"
+              id="top_line_item_color3"
+            />
+            <input
+              class="h-6 w-16 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="top_line_item_color4"
+              id="top_line_item_color4"
+            />
+          </span>
+          <span class="basis-3/6">Top StatusLine Item Background Colors</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">TopStatusLine</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_bg_text">
+            top_line_bg_text
+          </label>
+          <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
@@ -219,195 +228,36 @@
               id="top_line_bg_text"
             />
           </span>
+          <span class="basis-3/6">Top StatusLine Background Text</span>
         </div>
       </div>
+
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="prompt_color">
-            Prompt Color:
+          <span class="basis-1/6 font-bold">TopStatusLine</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="top_line_bg_color">
+            top_line_bg_color
           </label>
-          <span class="basis-2/6">
+          <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
               type="color"
-              placeholder="prompt_color"
-              id="prompt_color"
+              placeholder="top_line_bg_color"
+              id="top_line_bg_color"
             />
           </span>
+          <span class="basis-3/6">Top StatusLine Background Color</span>
         </div>
       </div>
+
       <div class="flex flex-col space-y-1 odd:bg-gray-100">
         <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="command_color">
-            Command Color:
-          </label>
-          <span class="basis-2/6">
-            <input
-              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="command_color"
-              id="command_color"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="title">
-            Title:
-          </label>
-          <span class="basis-2/6">
-            <input
-              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="text"
-              placeholder="title"
-              id="title"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="title_color">
-            Title Color:
-          </label>
-          <span class="basis-2/6">
-            <input
-              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="title_color"
-              id="title_color"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="cursor_color">
-            Cursor Color:
-          </label>
-          <span class="basis-2/6">
-            <input
-              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="cursor_color"
-              id="cursor_color"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_texts">
-            Terminal Texts(Tags):
-          </label>
-          <span class="basis-2/6">
-            <input
-              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="bottom_line_texts"
-              placeholder="bottom_line_texts"
-              id="bottom_line_texts"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700">
-            Bottom StatusLine Item Background Colors:
-          </label>
-          <span class="basis-5/6">
-            <input
-              class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="bottom_line_item_color1"
-              id="bottom_line_item_color1"
-            />
-            <input
-              class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="bottom_line_item_color2"
-              id="bottom_line_item_color2"
-            />
-            <input
-              class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="bottom_line_item_color3"
-              id="bottom_line_item_color3"
-            />
-            <input
-              class="h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="bottom_line_item_color4"
-              id="bottom_line_item_color4"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_bg_color">
-            Bottom StatusLine Background Color:
-          </label>
-          <span class="basis-2/6">
-            <input
-              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="bottom_line_bg_color"
-              id="bottom_line_bg_color"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_text_color">
-            Bottom StatusLine Text Color:
-          </label>
-          <span class="basis-2/6">
-            <input
-              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="color"
-              placeholder="bottom_line_text_color"
-              id="bottom_line_text_color"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
-          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_bg_text">
-            Bottom StatusLine Background Text:
-          </label>
-          <span class="basis-2/6">
-            <input
-              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
-              type="text"
-              placeholder="bottom_line_bg_text"
-              id="bottom_line_bg_text"
-            />
-          </span>
-        </div>
-      </div>
-      <div class="flex flex-col space-y-1 odd:bg-gray-100">
-        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">Background</span>
           <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bg_color">
-            Background Color:
+            bg_color
           </label>
-          <span class="basis-2/6">
+          <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
               onChange="render()"
@@ -416,8 +266,222 @@
               id="bg_color"
             />
           </span>
+          <span class="basis-3/6">Background Color</span>
         </div>
       </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">Prompt</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="prompt_color">
+            prompt_color
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="prompt_color"
+              id="prompt_color"
+            />
+          </span>
+          <span class="basis-3/6">Prompt `$` Color</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">Prompt</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="command_color">
+            command_color
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="command_color"
+              id="command_color"
+            />
+          </span>
+          <span class="basis-3/6">Command(`article --title`) color</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">Title</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="title">
+            title
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="text"
+              placeholder="title"
+              id="title"
+            />
+          </span>
+          <span class="basis-3/6">Article title</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">Title</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="title_color">
+            title_color
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="title_color"
+              id="title_color"
+            />
+          </span>
+          <span class="basis-3/6">Title Color</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">Prompt</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="cursor_color">
+            cursor_color
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="cursor_color"
+              id="cursor_color"
+            />
+          </span>
+          <span class="basis-3/6">Cursor Color</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">BottomStatusLine</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_texts">
+            bottom_line_texts
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="bottom_line_texts"
+              placeholder="bottom_line_texts"
+              id="bottom_line_texts"
+            />
+          </span>
+          <span class="basis-3/6">Bottom StatusLine texts</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">BottomStatusLine</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_text_color">
+            bottom_line_text_color
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="bottom_line_text_color"
+              id="bottom_line_text_color"
+            />
+          </span>
+          <span class="basis-3/6">Bottom StatusLine Text Color</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">BottomStatusLine</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700">
+            bottom_line_item_colors
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="h-6 w-16 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="bottom_line_item_color1"
+              id="bottom_line_item_color1"
+            />
+            <input
+              class="h-6 w-16 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="bottom_line_item_color2"
+              id="bottom_line_item_color2"
+            />
+            <input
+              class="h-6 w-16 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="bottom_line_item_color3"
+              id="bottom_line_item_color3"
+            />
+            <input
+              class="h-6 w-16 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="bottom_line_item_color4"
+              id="bottom_line_item_color4"
+            />
+          </span>
+          <span class="basis-3/6">Bottom StatusLine Item Background Colors</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">BottomStatusLine</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_bg_text">
+            bottom_line_bg_text
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="text"
+              placeholder="bottom_line_bg_text"
+              id="bottom_line_bg_text"
+            />
+          </span>
+          <span class="basis-3/6">Bottom StatusLine Background Text</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col space-y-1 odd:bg-gray-100">
+        <div class="flex flex-row p-1">
+          <span class="basis-1/6 font-bold">BottomStatusLine</span>
+          <label class="ml-2 basis-1/6 font-bold text-gray-700" for="bottom_line_bg_color">
+            bottom_line_bg_color
+          </label>
+          <span class="basis-1/6">
+            <input
+              class="block h-6 w-64 appearance-none border border-gray-500 bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
+              onChange="render()"
+              type="color"
+              placeholder="bottom_line_bg_color"
+              id="bottom_line_bg_color"
+            />
+          </span>
+          <span class="basis-3/6">Bottom StatusLine Background Color</span>
+        </div>
+      </div>
+
+
     </div>
     <div class="m-5">
       <button onClick="copyClipboard()" class="border-gray-400 bg-gray-100 px-2 py-1 text-gray-800 hover:bg-gray-100">Copy</button>

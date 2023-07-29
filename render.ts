@@ -21,6 +21,27 @@ interface FixedPosition {
   color: string;
 }
 
+interface Params {
+  width: number;
+  height: number;
+  title: string;
+  bottomLineTexts: string[];
+  topLineTexts: string[];
+  bottomLineBgText: string;
+  topLineBgText: string;
+  topLineItemColors: string[];
+  topLineBgColor: string;
+  topLineTextColor: string;
+  bottomLineItemColors: string[];
+  bottomLineBgColor: string;
+  bottomLineTextColor: string;
+  cursorColor: string;
+  promptColor: string;
+  bgColor: string;
+  titleColor: string;
+  commandColor: string;
+}
+
 const triangleBase = 40;
 const statusLineBase = 80;
 const textLineBase = 100;
@@ -245,17 +266,30 @@ const renderCursor = (
   ctx.fillRect(cursorX, cursorY, width, height);
 };
 
-export {
-  breakLines,
-  measureTextWithASCII,
-  renderBackground,
-  renderBottomStatusLine,
-  renderCommand,
-  renderCursor,
-  renderPrompt,
-  renderStatusLineItem,
-  renderTitle,
-  renderTopStatusLine,
-  renderTriangle,
-  textLineBase,
+const render = (ctx: CanvasRenderingContext2D, params: Params) => {
+  renderBackground(ctx, params.bgColor, params.width, params.height);
+  renderTopStatusLine(
+    ctx,
+    params.topLineTexts,
+    params.topLineItemColors,
+    params.topLineBgColor,
+    params.topLineBgText,
+    params.topLineTextColor,
+  );
+  renderPrompt(ctx, 10, textLineBase * 2, params.promptColor);
+  renderCommand(ctx, 80, textLineBase * 2, params.commandColor);
+  const titleLines = breakLines(ctx, params.title, 1150);
+  renderTitle(ctx, titleLines, 50, 300, params.titleColor);
+  renderCursor(ctx, titleLines, 50, 100, params.cursorColor);
+  renderBottomStatusLine(
+    ctx,
+    params.bottomLineTexts,
+    titleLines,
+    params.bottomLineItemColors,
+    params.bottomLineBgColor,
+    params.bottomLineBgText,
+    params.bottomLineTextColor,
+  );
 };
+
+export { render };

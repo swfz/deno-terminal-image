@@ -7,7 +7,7 @@
     <script>
       window.onload = (ev) => {
         init(defaultTheme);
-        render();
+        renderCanvas();
       }
 
       function init(theme) {
@@ -41,75 +41,88 @@
 
       function changeTheme(name) {
         init(themes[name]);
-        render();
+        renderCanvas();
       }
 
-      function render() {
+      function snakeToCamel(s) {
+        return s.replace(/(_\w)/g, function(m){return m[1].toUpperCase();});
+      }
+
+      function generateUrl(params) {
+        const topLineItemColorsParam = params.topLineItemColors.map((color) => rmSharp(color)).join(',');
+        const bottomLineItemColorsParam = params.bottomLineItemColors.map((color) => rmSharp(color)).join(',');
+
+        const url = `https://terminal-image.deno.dev/?title=${params.title}
+&top_line_texts=${params.topLineTexts.join(',')}
+&bottom_line_texts=${params.bottomLineTexts.join(',')}
+&top_line_text_color=${rmSharp(params.topLineTextColor)}
+&top_line_item_colors=${topLineItemColorsParam}
+&bottom_line_text_color=${rmSharp(params.bottomLineTextColor)}
+&bottom_line_item_colors=${bottomLineItemColorsParam}
+&title_color=${rmSharp(params.titleColor)}
+&command_color=${rmSharp(params.commandColor)}
+&prompt_color=${rmSharp(params.promptColor)}
+&cursor_color=${rmSharp(params.cursorColor)}
+&bg_color=${rmSharp(params.bgColor)}
+&top_line_bg_color=${rmSharp(params.topLineBgColor)}
+&bottom_line_bg_color=${rmSharp(params.bottomLineBgColor)}
+&top_line_bg_text=${params.topLineBgText}
+&bottom_line_bg_text=${params.bottomLineBgText}
+`;
+
+        return url;
+      }
+
+      function renderCanvas() {
         const canvas = document.querySelector('#generator');
         const ctx = canvas.getContext('2d');
         ctx.font = "50pt 'Noto Sans JP'";
 
-        const title = document.querySelector('#title').value;
-        const topLineTextColor = document.querySelector('#top_line_text_color').value;
-        const topLineItemColor1 = document.querySelector('#top_line_item_color1').value;
-        const topLineItemColor2 = document.querySelector('#top_line_item_color2').value;
-        const topLineItemColor3 = document.querySelector('#top_line_item_color3').value;
-        const topLineItemColor4 = document.querySelector('#top_line_item_color4').value;
-        const topLineBgText = document.querySelector('#top_line_bg_text').value;
-        const topLineBgColor = document.querySelector('#top_line_bg_color').value;
-        const bgColor = document.querySelector('#bg_color').value;
-        const promptColor = document.querySelector('#prompt_color').value;
-        const commandColor = document.querySelector('#command_color').value;
-        const titleColor = document.querySelector('#title_color').value;
-        const cursorColor = document.querySelector('#cursor_color').value;
+        const params = [
+          '#title',
+          '#top_line_texts',
+          '#top_line_text_color',
+          '#top_line_item_color1',
+          '#top_line_item_color2',
+          '#top_line_item_color3',
+          '#top_line_item_color4',
+          '#top_line_bg_text',
+          '#top_line_bg_color',
+          '#bg_color',
+          '#prompt_color',
+          '#command_color',
+          '#title_color',
+          '#cursor_color',
+          '#bottom_line_texts',
+          '#bottom_line_text_color',
+          '#bottom_line_item_color1',
+          '#bottom_line_item_color2',
+          '#bottom_line_item_color3',
+          '#bottom_line_item_color4',
+          '#bottom_line_bg_text',
+          '#bottom_line_bg_color',
+        ].reduce((acc, selector) => {
+          const key = snakeToCamel(selector.replace('#', ''));
+          const value = document.querySelector(selector).value;
 
-        const bottomLineTextColor = document.querySelector('#bottom_line_text_color').value;
-        const bottomLineItemColor1 = document.querySelector('#bottom_line_item_color1').value;
-        const bottomLineItemColor2 = document.querySelector('#bottom_line_item_color2').value;
-        const bottomLineItemColor3 = document.querySelector('#bottom_line_item_color3').value;
-        const bottomLineItemColor4 = document.querySelector('#bottom_line_item_color4').value;
-        const bottomLineBgText = document.querySelector('#bottom_line_bg_text').value;
-        const bottomLineBgColor = document.querySelector('#bottom_line_bg_color').value;
+          if (selector.endsWith('_texts')) {
+            acc[key] = value !== '' ? value.split(',') : [];
+          }
+          else if (selector.includes('_line_item_color')) {
+            const summaryKey = key.replace(/Color[1-4]{1}/, 'Colors')
+            acc[summaryKey] ||= [];
+            acc[summaryKey] = [...acc[summaryKey], value];
+          }
+          else {
+            acc[key] = value;
+          }
 
-        const topLineTextsInput = document.querySelector('#top_line_texts').value;
-        const bottomLineTextsInput = document.querySelector('#bottom_line_texts').value;
-        const topLineTexts = topLineTextsInput !== '' ? topLineTextsInput.split(',') : [];
-        const bottomLineTexts = bottomLineTextsInput !== '' ? bottomLineTextsInput.split(',') : [];
+          return acc;
+        }, {})
 
-        const topLineItemColors = [topLineItemColor1, topLineItemColor2, topLineItemColor3, topLineItemColor4];
-        const bottomLineItemColors = [bottomLineItemColor1, bottomLineItemColor2, bottomLineItemColor3, bottomLineItemColor4];
+        render(ctx, {...params, width: canvas.width, height: canvas.height});
 
-        renderBackground(ctx, bgColor, canvas.width, canvas.height);
-        renderTopStatusLine(ctx, topLineTexts, topLineItemColors, topLineBgColor, topLineBgText, topLineTextColor);
-        renderPrompt(ctx, 10, textLineBase * 2, promptColor);
-        renderCommand(ctx, 80, textLineBase * 2, commandColor);
-        const titleLines = breakLines(ctx, title, 1150);
-        renderTitle(ctx, titleLines, 50, 300, titleColor);
-        renderCursor(ctx, titleLines, 50, 100, cursorColor);
-        renderBottomStatusLine(ctx, bottomLineTexts, titleLines, bottomLineItemColors, bottomLineBgColor, bottomLineBgText, bottomLineTextColor);
-
-        const topLineItemColorsParam = topLineItemColors.map((color) => rmSharp(color)).join(',');
-        const bottomLineItemColorsParam = bottomLineItemColors.map((color) => rmSharp(color)).join(',');
-
-        const url = `https://terminal-image.deno.dev/?title=${title}
-&top_line_texts=${topLineTexts.join(',')}
-&bottom_line_texts=${bottomLineTexts.join(',')}
-&top_line_text_color=${rmSharp(topLineTextColor)}
-&top_line_item_colors=${topLineItemColorsParam}
-&bottom_line_text_color=${rmSharp(bottomLineTextColor)}
-&bottom_line_item_colors=${bottomLineItemColorsParam}
-&title_color=${rmSharp(titleColor)}
-&command_color=${rmSharp(commandColor)}
-&prompt_color=${rmSharp(promptColor)}
-&cursor_color=${rmSharp(cursorColor)}
-&bg_color=${rmSharp(bgColor)}
-&top_line_bg_color=${rmSharp(topLineBgColor)}
-&bottom_line_bg_color=${rmSharp(bottomLineBgColor)}
-&top_line_bg_text=${topLineBgText}
-&bottom_line_bg_text=${bottomLineBgText}
-`;
-
-        document.getElementById('url').value = url;
+        document.getElementById('url').value = generateUrl(params);
       }
 
       function copyClipboard() {
@@ -168,7 +181,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="text"
               placeholder="top_line_texts"
               id="top_line_texts"
@@ -187,7 +200,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="top_line_text_color"
               id="top_line_text_color"
@@ -206,28 +219,28 @@
           <span class="basis-1/6">
             <input
               class="h-6 w-16 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="top_line_item_color1"
               id="top_line_item_color1"
             />
             <input
               class="h-6 w-16 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="top_line_item_color2"
               id="top_line_item_color2"
             />
             <input
               class="h-6 w-16 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="top_line_item_color3"
               id="top_line_item_color3"
             />
             <input
               class="h-6 w-16 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="top_line_item_color4"
               id="top_line_item_color4"
@@ -246,7 +259,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="text"
               placeholder="top_line_bg_text"
               id="top_line_bg_text"
@@ -265,7 +278,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="top_line_bg_color"
               id="top_line_bg_color"
@@ -284,7 +297,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="bg_color"
               id="bg_color"
@@ -303,7 +316,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="prompt_color"
               id="prompt_color"
@@ -322,7 +335,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="command_color"
               id="command_color"
@@ -341,7 +354,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="text"
               placeholder="title"
               id="title"
@@ -360,7 +373,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="title_color"
               id="title_color"
@@ -379,7 +392,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="cursor_color"
               id="cursor_color"
@@ -398,7 +411,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="bottom_line_texts"
               placeholder="bottom_line_texts"
               id="bottom_line_texts"
@@ -417,7 +430,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="bottom_line_text_color"
               id="bottom_line_text_color"
@@ -436,28 +449,28 @@
           <span class="basis-1/6">
             <input
               class="h-6 w-16 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="bottom_line_item_color1"
               id="bottom_line_item_color1"
             />
             <input
               class="h-6 w-16 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="bottom_line_item_color2"
               id="bottom_line_item_color2"
             />
             <input
               class="h-6 w-16 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="bottom_line_item_color3"
               id="bottom_line_item_color3"
             />
             <input
               class="h-6 w-16 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="bottom_line_item_color4"
               id="bottom_line_item_color4"
@@ -476,7 +489,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="text"
               placeholder="bottom_line_bg_text"
               id="bottom_line_bg_text"
@@ -495,7 +508,7 @@
           <span class="basis-1/6">
             <input
               class="block h-6 w-64 appearance-none border border-gray-500 rounded bg-white px-1 py-0 leading-none text-gray-700 focus:outline-none"
-              onChange="render()"
+              onChange="renderCanvas()"
               type="color"
               placeholder="bottom_line_bg_color"
               id="bottom_line_bg_color"

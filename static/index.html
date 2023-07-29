@@ -55,9 +55,12 @@
         const promptColor = document.querySelector('#prompt_color').value;
         const cursorColor = document.querySelector('#cursor_color').value;
         const bgColor = document.querySelector('#bg_color').value;
-        const texts = document.querySelector('#texts').value.split(',');
-        const tags = document.querySelector('#tags').value.split(',');
         const title = document.querySelector('#title').value;
+
+        const textsInput = document.querySelector('#texts').value;
+        const tagsInput = document.querySelector('#tags').value;
+        const texts = textsInput !== '' ? textsInput.split(',') : [];
+        const tags = tagsInput !== '' ? tagsInput.split(',') : [];
 
         const topColors = [topColor1, topColor2, topColor3, topColor4];
         const bottomColors = [bottomColor1, bottomColor2, bottomColor3, bottomColor4];

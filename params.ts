@@ -1,5 +1,35 @@
 import { defaultTheme } from "./theme.ts";
 
+interface Params {
+  title: string;
+  topLineTexts: string[];
+  topLineTextColor: string;
+  topLineItemColors: string[];
+  topLineBgText: string | null;
+  topLineBgColor: string;
+  bgColor: string;
+  promptColor: string;
+  commandColor: string;
+  titleColor: string;
+  cursorColor: string;
+  bottomLineTexts: string[];
+  bottomLineTextColor: string;
+  bottomLineItemColors: string[];
+  bottomLineBgText: string;
+  bottomLineBgColor: string;
+}
+
+type ColorParams = Pick<Params, "cursorColor" | "promptColor" | "bgColor" | "titleColor" | "commandColor">;
+type StatusLineColorParams = Pick<
+  Params,
+  | "topLineBgColor"
+  | "topLineTextColor"
+  | "bottomLineBgColor"
+  | "bottomLineTextColor"
+  | "topLineItemColors"
+  | "bottomLineItemColors"
+>;
+
 const isValidColorCode = (str: string) => {
   return /^([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(str);
 };
@@ -26,7 +56,7 @@ const snakeToCamel = (s: string) => {
   });
 };
 
-const getParams = (url: URL) => {
+const getParams = (url: URL): Params => {
   const bottomLineTextsParam = url.searchParams.get("bottom_line_texts");
   const topLineTextsParam = url.searchParams.get("top_line_texts");
   const bottomLineTexts = bottomLineTextsParam ? bottomLineTextsParam.split(",") : [];
@@ -34,11 +64,14 @@ const getParams = (url: URL) => {
 
   const colorParams = ["cursor_color", "prompt_color", "bg_color", "title_color", "command_color"].reduce(
     (acc, key) => {
-      acc[snakeToCamel(key)] = getColor(url, key) ?? defaultTheme[snakeToCamel(key)];
+      const k = snakeToCamel(key);
+      if (k === "cursorColor" || k === "promptColor" || k === "bgColor" || k === "titleColor" || k === "commandColor") {
+        acc[k] = getColor(url, key) ?? defaultTheme[k];
+      }
 
       return acc;
     },
-    {},
+    {} as ColorParams,
   );
 
   const statusLineColorParams = [
@@ -51,13 +84,24 @@ const getParams = (url: URL) => {
   ].reduce((acc, key) => {
     const statusLine = key.includes("top_") ? "topStatusLine" : "bottomStatusLine";
     if (key.endsWith("_colors")) {
-      acc[snakeToCamel(key)] = getColors(url, key) ?? defaultTheme[statusLine].itemColors;
+      const k = snakeToCamel(key);
+      if (k === "topLineItemColors" || k === "bottomLineItemColors") {
+        acc[k] = getColors(url, key) ?? defaultTheme[statusLine].itemColors;
+      }
     } else {
       const k = snakeToCamel(key.split("_").slice(2).join("_"));
-      acc[snakeToCamel(key)] = getColor(url, key) ?? defaultTheme[statusLine][k];
+      if (k === "textColor" || k === "bgColor") {
+        const paramKey = snakeToCamel(key);
+        if (
+          paramKey === "topLineBgColor" || paramKey === "bottomLineBgColor" || paramKey === "topLineTextColor" ||
+          paramKey === "bottomLineTextColor"
+        ) {
+          acc[paramKey] = getColor(url, key) ?? defaultTheme[statusLine][k];
+        }
+      }
     }
     return acc;
-  }, {});
+  }, {} as StatusLineColorParams);
 
   return {
     topLineTexts,
@@ -71,3 +115,4 @@ const getParams = (url: URL) => {
 };
 
 export { getParams };
+export type { Params };

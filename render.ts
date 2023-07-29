@@ -1,4 +1,5 @@
 import TinySegmenter from "https://esm.sh/tiny-segmenter@0.2.0";
+import { Params } from "./params.ts";
 
 interface ItemPosition {
   triangle: number;
@@ -19,27 +20,6 @@ interface FixedPosition {
   height: number;
   textY: number;
   color: string;
-}
-
-interface Params {
-  width: number;
-  height: number;
-  title: string;
-  bottomLineTexts: string[];
-  topLineTexts: string[];
-  bottomLineBgText: string;
-  topLineBgText: string;
-  topLineItemColors: string[];
-  topLineBgColor: string;
-  topLineTextColor: string;
-  bottomLineItemColors: string[];
-  bottomLineBgColor: string;
-  bottomLineTextColor: string;
-  cursorColor: string;
-  promptColor: string;
-  bgColor: string;
-  titleColor: string;
-  commandColor: string;
 }
 
 const triangleBase = 40;

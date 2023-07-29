@@ -5,7 +5,6 @@ import { serveDir, serveFile } from "https://deno.land/std@0.141.0/http/file_ser
 
 const port = 8080;
 
-
 const handler = async (request: Request): Promise<Response> => {
   const url = new URL(request.url);
   if (url.pathname.startsWith("/generator")) { // URLが"/generator"始まりだった場合は

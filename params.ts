@@ -70,4 +70,4 @@ const getParams = (url: URL) => {
   };
 };
 
-export { getParams }
+export { getParams };

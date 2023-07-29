@@ -32,7 +32,7 @@ const solarizedDark = {
   commandColor: "#93a1a1",
   titleColor: "#ffffff",
   cursorColor: "#fdf6e3",
-}
+};
 
 const solarizedLight = {
   topStatusLine: {
@@ -50,12 +50,12 @@ const solarizedLight = {
   commandColor: "#93a1a1",
   titleColor: "#586e75",
   cursorColor: "#fdf6e3",
-}
+};
 
 const themes = {
   default: defaultTheme,
   solarizedDark: solarizedDark,
   solarizedLight: solarizedLight,
-}
+};
 
 export { defaultTheme, solarizedDark, solarizedLight, themes };

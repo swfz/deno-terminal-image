@@ -14,3 +14,5 @@ jobs:
         run: deno fmt --check --ignore=README.md
       - name: Run lint
         run: deno lint
+      - name: Run test
+        run: deno test

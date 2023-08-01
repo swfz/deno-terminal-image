@@ -10,29 +10,36 @@
         renderCanvas();
       }
 
-      function init(theme) {
-        document.getElementById('title').value = 'Terminal Image URL Generatorの開発中';
+      function initText() {
         document.getElementById('top_line_texts').value = 'swfz,til';
+        document.getElementById('title').value = 'Terminal Image URL Generatorの開発中';
+        document.getElementById('top_line_bg_text').value = '';
+        document.getElementById('bottom_line_texts').value = 'hoge,fuga,piyo';
+        document.getElementById('bottom_line_bg_text').value = 'Tags';
+      }
+      function initColor(theme) {
         document.getElementById('top_line_text_color').value = theme.topStatusLine.textColor;
         document.getElementById('top_line_item_color1').value = theme.topStatusLine.itemColors[0];
         document.getElementById('top_line_item_color2').value = theme.topStatusLine.itemColors[1];
         document.getElementById('top_line_item_color3').value = theme.topStatusLine.itemColors[2];
         document.getElementById('top_line_item_color4').value = theme.topStatusLine.itemColors[3];
-        document.getElementById('top_line_bg_text').value = '';
         document.getElementById('top_line_bg_color').value = theme.topStatusLine.bgColor;
         document.getElementById('bg_color').value = theme.bgColor;
         document.getElementById('prompt_color').value = theme.promptColor;
         document.getElementById('command_color').value = theme.commandColor;
         document.getElementById('title_color').value = theme.titleColor;
         document.getElementById('cursor_color').value = theme.cursorColor;
-        document.getElementById('bottom_line_texts').value = 'hoge,fuga,piyo';
         document.getElementById('bottom_line_text_color').value = theme.bottomStatusLine.textColor;
         document.getElementById('bottom_line_item_color1').value = theme.bottomStatusLine.itemColors[0];
         document.getElementById('bottom_line_item_color2').value = theme.bottomStatusLine.itemColors[1];
         document.getElementById('bottom_line_item_color3').value = theme.bottomStatusLine.itemColors[2];
         document.getElementById('bottom_line_item_color4').value = theme.bottomStatusLine.itemColors[3];
-        document.getElementById('bottom_line_bg_text').value = 'Tags';
         document.getElementById('bottom_line_bg_color').value = theme.bottomStatusLine.bgColor;
+      }
+
+      function init(theme) {
+        initText();
+        initColor(theme);
       }
 
       function rmSharp(color) {
@@ -40,7 +47,7 @@
       }
 
       function changeTheme(name) {
-        init(themes[name]);
+        initColor(themes[name]);
         renderCanvas();
       }
 

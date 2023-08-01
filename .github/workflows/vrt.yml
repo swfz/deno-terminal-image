@@ -14,6 +14,8 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+    - name: directory
+      run: e2e
     - name: Install dependencies
       run: yarn install
     - name: Install Playwright Browsers

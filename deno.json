@@ -1,9 +1,9 @@
 {
   "lint": {
-    "exclude": ["./static/"]
+    "exclude": ["./static/", "e2e"]
   },
   "fmt": {
-    "exclude": ["./static/"],
+    "exclude": ["./static/", "e2e"],
     "lineWidth": 120
   }
 }

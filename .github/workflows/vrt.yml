@@ -19,6 +19,10 @@ jobs:
         cd e2e
         yarn install
         yarn playwright install --with-deps
+
+    - name: run server
+      run: |
+        deno run --allow-net --allow-read --allow-write --allow-env --allow-run --unstable server.ts &
     - name: Run Playwright tests
       run: |
         cd e2e

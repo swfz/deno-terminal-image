@@ -1,12 +1,12 @@
 {
   "lint": {
-    "exclude": ["./static/", "./e2e/"]
+    "exclude": ["./static/", "./e2e/**/*", "./e2e/*"]
   },
   "fmt": {
-    "exclude": ["./static/", "./e2e/"],
+    "exclude": ["./static/", "./e2e/**/*", "./e2e/*"],
     "lineWidth": 120
   },
   "test": {
-    "exclude": ["./static/", "./e2e/"]
+    "exclude": ["./static/", "./e2e/**/*", "./e2e/*"]
   }
 }

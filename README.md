@@ -7,7 +7,7 @@ OGP Image builder
 example
 
 ```
-https://terminal-image.deno.dev/?title=awesome_title&tags=tag1,tag2,tag3
+https://terminal-image.deno.dev/?title=awesome_title&bottom_line_texts=tag1,tag2,tag3
 ```
 
 ### parameter

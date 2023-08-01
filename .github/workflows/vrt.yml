@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: 18
     - name: directory
-      run: e2e
+      run: cd e2e
     - name: Install dependencies
       run: yarn install
     - name: Install Playwright Browsers

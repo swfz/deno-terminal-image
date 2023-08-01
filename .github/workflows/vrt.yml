@@ -23,6 +23,7 @@ jobs:
     - name: run server
       run: |
         deno run --allow-net --allow-read --allow-write --allow-env --allow-run --unstable server.ts &
+        sleep 20
     - name: Run Playwright tests
       run: |
         cd e2e
@@ -30,6 +31,6 @@ jobs:
     - uses: actions/upload-artifact@v3
       if: always()
       with:
-        name: e2e/playwright-report
+        name: playwright-report
         path: e2e/playwright-report/
         retention-days: 30

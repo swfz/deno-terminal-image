@@ -1,4 +1,11 @@
 {
+  "tasks": {
+    "dev": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run server.ts",
+    "build": "deno run --allow-net --allow-read --allow-env --allow-write  bundle.ts",
+    "deploy": "deployctl deploy --project=terminal-image --prod server.ts",
+    "preview": "deployctl deploy --project=terminal-image server.ts",
+    "fmt-check": "deno fmt --check"
+  },
   "lint": {
     "exclude": ["./static/", "./e2e/**/*", "./e2e/*"]
   },

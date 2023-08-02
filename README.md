@@ -44,14 +44,14 @@ If you want to create URLs or actually try things out, please use this URLGenera
 - run
 
 ```
-deno run --allow-net --allow-read --allow-env --watch server.ts
+deno task dev
 ```
 
 - deploy
 
 ```
-deno run --allow-net --allow-read --allow-env --allow-write  bundle.ts
-deployctl deploy --project=til-ogp --prod server.ts
+deno task build
+deno task deploy
 ```
 
 ## sample

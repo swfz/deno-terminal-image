@@ -2,5 +2,21 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["\\.tsx?$"],
+      "matchStrings": [
+        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"](?<depName>https://deno.land/.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?['\"]"
+      ],
+      "datasourceTemplate": "deno"
+    },
+    {
+      "fileMatch": ["\\.tsx?$"],
+      "matchStrings": [
+        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"]https://esm.sh/(?<depName>.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?['\"]"
+      ],
+      "datasourceTemplate": "npm"
+    }
   ]
 }

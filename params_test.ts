@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.205.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.206.0/testing/asserts.ts";
 import { getParams } from "./params.ts";
 import { defaultTheme } from "./theme.ts";
 

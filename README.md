@@ -44,14 +44,14 @@ If you want to create URLs or actually try things out, please use this URLGenera
 - run
 
 ```
-deno task dev
+deno run dev
 ```
 
 - deploy
 
 ```
-deno task build
-deno task deploy
+deno run build
+deno run deploy
 ```
 
 ## sample

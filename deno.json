@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run server.ts",
+    "dev": "deno run --unstable-kv --allow-net --allow-read --allow-write --allow-env --allow-run --watch server.ts",
     "build": "deno run --allow-net --allow-read --allow-env --allow-write  bundle.ts",
     "deploy": "deployctl deploy --project=terminal-image --prod server.ts",
     "preview": "deployctl deploy --project=terminal-image server.ts",

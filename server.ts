@@ -1,12 +1,16 @@
 import { createCanvas } from "https://deno.land/x/canvas@v1.4.1/mod.ts";
 import { render } from "./render.ts";
 import { getParams } from "./params.ts";
+import { log } from "./logger.ts";
 import { serveDir, serveFile } from "https://deno.land/std@0.224.0/http/file_server.ts";
 
 const port = 8080;
 
 const handler = async (request: Request): Promise<Response> => {
   const url = new URL(request.url);
+
+  log(request, {});
+
   if (url.pathname.startsWith("/generator")) { // URLが"/generator"始まりだった場合は
     return await serveFile(request, `${Deno.cwd()}/static/index.html`);
   }

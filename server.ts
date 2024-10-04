@@ -1,4 +1,4 @@
-import { createCanvas } from "https://deno.land/x/canvas@v1.4.1/mod.ts";
+import { createCanvas } from "https://deno.land/x/canvas@v1.4.2/mod.ts";
 import { render } from "./render.ts";
 import { getParams } from "./params.ts";
 import { log } from "./logger.ts";

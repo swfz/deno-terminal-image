@@ -7,13 +7,33 @@
     "fmt-check": "deno fmt --check"
   },
   "lint": {
-    "exclude": ["./static/", "./e2e/**/*", "./e2e/*"]
+    "exclude": [
+      "./static/",
+      "./e2e/**/*",
+      "./e2e/*"
+    ]
   },
   "fmt": {
-    "exclude": ["./static/", "./e2e/**/*", "./e2e/*"],
+    "exclude": [
+      "./static/",
+      "./e2e/**/*",
+      "./e2e/*"
+    ],
     "lineWidth": 120
   },
   "test": {
-    "exclude": ["./static/", "./e2e/**/*", "./e2e/*"]
+    "exclude": [
+      "./static/",
+      "./e2e/**/*",
+      "./e2e/*"
+    ]
+  },
+  "deploy": {
+    "project": "d04b3fe5-a82b-4369-9cb2-6f678c34d7a5",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "server.ts"
   }
 }

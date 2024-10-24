@@ -9,7 +9,7 @@ const port = 8080;
 const handler = async (request: Request): Promise<Response> => {
   const url = new URL(request.url);
 
-  log(request, {});
+  await log(request, {});
 
   if (url.pathname.startsWith("/generator")) { // URLが"/generator"始まりだった場合は
     return await serveFile(request, `${Deno.cwd()}/static/index.html`);

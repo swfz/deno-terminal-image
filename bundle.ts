@@ -2,10 +2,10 @@ import { bundle } from "emit";
 
 const bundleCode = async (file: string) => {
   const url = new URL(import.meta.resolve(file));
-  
+
   const denoJsonUrl = new URL("./deno.json", import.meta.url);
   const denoConfig = JSON.parse(await Deno.readTextFile(denoJsonUrl));
-  
+
   const { code } = await bundle(url, {
     importMap: {
       imports: denoConfig.imports ?? {},

@@ -16,7 +16,7 @@ jobs:
           deno-version: v2.x
       - uses: actions/setup-node@v6
         with:
-          node-version: 18
+          node-version: 24
       - name: Install dependencies Prepare
         run: |
           cd e2e

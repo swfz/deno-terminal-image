@@ -2,7 +2,15 @@ import { bundle } from "emit";
 
 const bundleCode = async (file: string) => {
   const url = new URL(import.meta.resolve(file));
-  const { code } = await bundle(url);
+  
+  const denoJsonUrl = new URL("./deno.json", import.meta.url);
+  const denoConfig = JSON.parse(await Deno.readTextFile(denoJsonUrl));
+  
+  const { code } = await bundle(url, {
+    importMap: {
+      imports: denoConfig.imports ?? {},
+    },
+  });
 
   // NOTE: Workaround トランスパイルしたら連想配列のキーにマルチバイト文字が含まれていてクオートされていない状態になってしまうので無理やり判定してクォート付与
   const keyQuotedCode = code.replace(

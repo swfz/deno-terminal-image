@@ -1,4 +1,4 @@
-import TinySegmenter from "https://esm.sh/tiny-segmenter@0.2.0";
+import TinySegmenter from "tiny-segmenter";
 import { Params } from "./params.ts";
 
 interface ItemPosition {

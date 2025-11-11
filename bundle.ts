@@ -1,4 +1,4 @@
-import { bundle } from "https://deno.land/x/emit@0.40.0/mod.ts";
+import { bundle } from "emit";
 
 const bundleCode = async (file: string) => {
   const url = new URL(import.meta.resolve(file));

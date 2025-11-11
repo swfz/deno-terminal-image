@@ -1,8 +1,8 @@
-import { createCanvas } from "https://deno.land/x/canvas@v1.4.2/mod.ts";
+import { createCanvas } from "canvas";
 import { render } from "./render.ts";
 import { getParams } from "./params.ts";
 import { log } from "./logger.ts";
-import { serveDir, serveFile } from "https://deno.land/std@0.224.0/http/file_server.ts";
+import { serveDir, serveFile } from "@std/http/file-server";
 
 const port = 8080;
 

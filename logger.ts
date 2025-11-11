@@ -1,4 +1,4 @@
-import { ulid } from "jsr:@std/ulid";
+import { ulid } from "@std/ulid";
 
 const EXPIRE_LOGS_DAYS = 90;
 

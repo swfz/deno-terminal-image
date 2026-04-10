@@ -1,27 +1,31 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
-  ],
-  "regexManagers": [
+  "extends": ["config:recommended"],
+  "minimumReleaseAge": "7 days",
+  "internalChecksFilter": "strict",
+  "osvVulnerabilityAlerts": true,
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": ["\\.tsx?$"],
       "matchStrings": [
-        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"](?<depName>https://deno.land/.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?['\"]"
+        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"](?<depName>https://deno\\.land/.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?['\"]"
       ],
       "datasourceTemplate": "deno"
     },
     {
+      "customType": "regex",
       "fileMatch": ["\\.tsx?$"],
       "matchStrings": [
-        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"](?<depName>https://deno.land/x/.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?['\"]"
+        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"](?<depName>https://deno\\.land/x/.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?['\"]"
       ],
       "datasourceTemplate": "deno"
     },
     {
+      "customType": "regex",
       "fileMatch": ["\\.tsx?$"],
       "matchStrings": [
-        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"]https://esm.sh/(?<depName>.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?['\"]"
+        "(?:im|ex)port(?:.|\\s)+?from\\s*['\"]https://esm\\.sh/(?<depName>.+?)@v?(?<currentValue>\\d+?\\.\\d+?\\.\\d+?).*?['\"]"
       ],
       "datasourceTemplate": "npm"
     }

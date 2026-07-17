@@ -7,7 +7,7 @@ OGP Image builder
 example
 
 ```
-https://terminal-image.deno.dev/?title=awesome_title&bottom_line_texts=tag1,tag2,tag3
+https://terminal-image.swfz.deno.net/?title=awesome_title&bottom_line_texts=tag1,tag2,tag3
 ```
 
 ### parameter
@@ -37,7 +37,7 @@ available GET url parameters
 
 If you want to create URLs or actually try things out, please use this URLGenerator.
 
-[terminal-image.deno.dev/generator](https://terminal-image.deno.dev/generator)
+[terminal-image.swfz.deno.net/generator](https://terminal-image.swfz.deno.net/generator)
 
 ## development
 
